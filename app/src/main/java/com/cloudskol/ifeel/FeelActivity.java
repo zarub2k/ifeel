@@ -1,6 +1,7 @@
 package com.cloudskol.ifeel;
 
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -16,10 +18,15 @@ import android.widget.ToggleButton;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 public class FeelActivity extends AppCompatActivity {
     private static final String LOG_TAG = FeelActivity.class.getSimpleName();
 
     private String selectedFeeling = null;
+    final FeelDbHelper feelDbHelper = new FeelDbHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,24 +74,53 @@ public class FeelActivity extends AppCompatActivity {
 
     public void onSave(View view) {
         saveFeeling();
-        Toast.makeText(this, "Save button clicked", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Your current feeling is stored successfully!", Toast.LENGTH_SHORT).show();
     }
 
     public void onCancel(View view) {
-        Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
+        final SQLiteDatabase db = feelDbHelper.getReadableDatabase();
+
+        String[] projection = {
+                FeelContract.FeelEntry._ID,
+                FeelContract.FeelEntry.COLUMN_FEELING,
+                FeelContract.FeelEntry.COLUMN_PERSON
+        };
+
+        final Cursor cursor = db.query(FeelContract.FeelEntry.TABLE_NAME,
+                projection,
+                null,
+                null,
+                null,
+                null,
+                null);
+
+        final String storedFeeling = cursor.getString(cursor.getColumnIndexOrThrow(FeelContract.FeelEntry.COLUMN_FEELING));
+        cursor.moveToNext();
+
+        Toast.makeText(this, "Cancel button clicked " + storedFeeling, Toast.LENGTH_SHORT).show();
     }
 
     private void saveFeeling() {
-        final FeelDbHelper feelDbHelper = new FeelDbHelper(this);
         final SQLiteDatabase db = feelDbHelper.getWritableDatabase();
-
-        getContentValues();
-
+        db.insert(FeelContract.FeelEntry.TABLE_NAME, null, getContentValues());
+        db.close();
     }
 
     private ContentValues getContentValues() {
         final ContentValues contentValues = new ContentValues();
+
         contentValues.put(FeelContract.FeelEntry.COLUMN_FEELING, selectedFeeling);
+
+        EditText personText = (EditText) findViewById(R.id.txt_person);
+        contentValues.put(FeelContract.FeelEntry.COLUMN_PERSON, personText.getText().toString());
+
+        EditText summaryText = (EditText) findViewById(R.id.txt_summary);
+        contentValues.put(FeelContract.FeelEntry.COLUMN_SUMMARY, summaryText.getText().toString());
+
+        final Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        final String now = dateFormat.format(calendar.getTime());
+        contentValues.put(FeelContract.FeelEntry.COLUMN_DATE, now);
 
         Log.v(LOG_TAG, "Content values: " + contentValues);
 
