@@ -1,0 +1,7 @@
+<resources>
+    <string-array name="features">
+        <item>iFeel</item>
+        <item>Trends</item>
+        <item>Influencers</item>
+    </string-array>
+</resources>

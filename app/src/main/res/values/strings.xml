@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">ifeel</string>
+
     <string name="nav_ifeel">iFeel</string>
     <string name="nav_trends">Trends</string>
     <string name="nav_influencers">Influencers</string>
+
+    <string name="title_activity_feel">How do I feel now?</string>
 </resources>
