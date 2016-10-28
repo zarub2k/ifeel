@@ -13,4 +13,46 @@
     tools:context="com.cloudskol.ifeel.FeelActivity"
     tools:showIn="@layout/activity_feel">
 
+    <RadioGroup android:id="@+id/feelings_group"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal">
+
+        <ToggleButton android:id="@+id/tgl_fear"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:drawableTop="@drawable/favorite"
+            android:textOn="Fear"
+            android:textOff="Fear"
+            android:onClick="onToggle"
+            android:checked="true" />
+        <ToggleButton android:id="@+id/tgl_anger"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:drawableTop="@drawable/image"
+            android:textOn="Anger"
+            android:textOff="Anger"
+            android:onClick="onToggle" />
+        <ToggleButton android:id="@+id/tgl_sad"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Sad"
+            android:textOff="Sad"
+            android:onClick="onToggle" />
+        <ToggleButton android:id="@+id/tgl_joy"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="Joyful"
+            android:textOff="Joyful"
+            android:onClick="onToggle" />
+    </RadioGroup>
 </RelativeLayout>

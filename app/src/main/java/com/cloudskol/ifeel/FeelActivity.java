@@ -6,6 +6,9 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+import android.widget.ToggleButton;
 
 public class FeelActivity extends AppCompatActivity {
 
@@ -25,6 +28,30 @@ public class FeelActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        renderUi();
     }
 
+    private void renderUi() {
+        final RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
+
+                ToggleButton toggleButton;
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
+                    toggleButton = (ToggleButton) radioGroup.getChildAt(i);
+                    toggleButton.setChecked(checkedId == toggleButton.getId());
+                }
+            }
+        };
+
+        RadioGroup feelingsRadioGroup = (RadioGroup) findViewById(R.id.feelings_group);
+        feelingsRadioGroup.setOnCheckedChangeListener(onCheckedChangeListener);
+    }
+
+    public void onToggle(View view) {
+        ((RadioGroup)view.getParent()).check(view.getId());
+
+        Toast.makeText(this, "Selected Toggle " + ((ToggleButton)view).getText(), Toast.LENGTH_SHORT).show();
+    }
 }
