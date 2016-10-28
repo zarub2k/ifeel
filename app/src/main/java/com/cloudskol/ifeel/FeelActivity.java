@@ -54,4 +54,12 @@ public class FeelActivity extends AppCompatActivity {
 
         Toast.makeText(this, "Selected Toggle " + ((ToggleButton)view).getText(), Toast.LENGTH_SHORT).show();
     }
+
+    public void onSave(View view) {
+        Toast.makeText(this, "Save button clicked", Toast.LENGTH_SHORT).show();
+    }
+
+    public void onCancel(View view) {
+        Toast.makeText(this, "Cancel button clicked", Toast.LENGTH_SHORT).show();
+    }
 }

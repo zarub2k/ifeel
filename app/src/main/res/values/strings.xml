@@ -8,10 +8,10 @@
     <string name="title_activity_feel">How do I feel now?</string>
 
     <!-- Feelings activity -->
-    <string name="lbl_ifeel">I am feeling like...</string>
+    <string name="lbl_ifeel">I am feeling,</string>
     <string name="lbl_person">Because of</string>
     <string name="lbl_summary">Summary</string>
-    <string name="txt_person_hint">Mention person name</string>
+    <string name="txt_person_hint">Mention a person name</string>
     <string name="btn_save">Save</string>
     <string name="btn_cancel">Cancel</string>
 </resources>
