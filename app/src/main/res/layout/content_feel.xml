@@ -13,6 +13,11 @@
     tools:context="com.cloudskol.ifeel.FeelActivity"
     tools:showIn="@layout/activity_feel">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_ifeel"/>
+
     <RadioGroup android:id="@+id/feelings_group"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -55,4 +60,24 @@
             android:textOff="Joyful"
             android:onClick="onToggle" />
     </RadioGroup>
+
+    <TextView android:id="@+id/lbl_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_person"
+        android:layout_below="@id/feelings_group"/>
+    <EditText android:id="@+id/txt_person"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_person"/>
+
+    <TextView android:id="@+id/lbl_summary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/lbl_summary"
+        android:layout_below="@id/txt_person"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/lbl_summary"/>
 </RelativeLayout>

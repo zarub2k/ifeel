@@ -6,4 +6,9 @@
     <string name="nav_influencers">Influencers</string>
 
     <string name="title_activity_feel">How do I feel now?</string>
+
+    <!-- Feelings activity -->
+    <string name="lbl_ifeel">I am feeling like...</string>
+    <string name="lbl_person">Because of</string>
+    <string name="lbl_summary">Summary</string>
 </resources>
