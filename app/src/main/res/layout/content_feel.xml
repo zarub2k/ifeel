@@ -20,7 +20,7 @@
         android:textSize="30sp"/>
 
     <RadioGroup android:id="@+id/feelings_group"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:orientation="horizontal"
@@ -58,8 +58,24 @@
             android:layout_width="fill_parent"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:textOn="Joyful"
-            android:textOff="Joyful"
+            android:textOn="@string/lbl_joy"
+            android:textOff="@string/lbl_joy"
+            android:onClick="onToggle" />
+        <ToggleButton android:id="@+id/tgl_disgust"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="@string/lbl_disgust"
+            android:textOff="@string/lbl_disgust"
+            android:onClick="onToggle" />
+        <ToggleButton android:id="@+id/tgl_surprise"
+            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_weight="1"
+            android:textSize="14sp"
+            android:textOn="@string/lbl_surprise"
+            android:textOff="@string/lbl_surprise"
             android:onClick="onToggle" />
     </RadioGroup>
 
