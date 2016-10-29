@@ -94,8 +94,11 @@ public class FeelActivity extends AppCompatActivity {
                 null,
                 null);
 
+        cursor.moveToFirst();
+
+        Log.v(LOG_TAG, "Number of rows: " + cursor.getCount());
+
         final String storedFeeling = cursor.getString(cursor.getColumnIndexOrThrow(FeelContract.FeelEntry.COLUMN_FEELING));
-        cursor.moveToNext();
 
         Toast.makeText(this, "Cancel button clicked " + storedFeeling, Toast.LENGTH_SHORT).show();
     }
