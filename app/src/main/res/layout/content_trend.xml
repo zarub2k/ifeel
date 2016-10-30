@@ -13,4 +13,9 @@
     tools:context="com.cloudskol.ifeel.TrendActivity"
     tools:showIn="@layout/activity_trend">
 
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/todayTrend"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>
