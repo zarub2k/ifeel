@@ -20,6 +20,10 @@
     <string name="lbl_joy">Joy</string>
     <string name="lbl_disgust">Disgust</string>
     <string name="lbl_surprise">Surprised</string>
+
+    <!-- Trend activity -->
     <string name="title_activity_trend">Feelings Trend</string>
+
+    <!-- Influencer activity -->
     <string name="title_activity_influencer">Influencers summary</string>
 </resources>
