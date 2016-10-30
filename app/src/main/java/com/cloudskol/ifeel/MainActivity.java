@@ -35,11 +35,23 @@ public class MainActivity extends AppCompatActivity {
                 break;
 
             case 1:
+                switchTrendActivity();
                 break;
 
             case 2:
+                switchInfluencerActivity();
                 break;
         }
+    }
+
+    private void switchInfluencerActivity() {
+        final Intent intent = new Intent(this, InfluencerActivity.class);
+        startActivity(intent);
+    }
+
+    private void switchTrendActivity() {
+        final Intent intent = new Intent(this, TrendActivity.class);
+        startActivity(intent);
     }
 
     private void switchFeelActivity() {

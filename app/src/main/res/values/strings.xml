@@ -20,4 +20,6 @@
     <string name="lbl_joy">Joy</string>
     <string name="lbl_disgust">Disgust</string>
     <string name="lbl_surprise">Surprised</string>
+    <string name="title_activity_trend">Feelings Trend</string>
+    <string name="title_activity_influencer">Influencers summary</string>
 </resources>
