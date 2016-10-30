@@ -42,6 +42,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cloudskol.ifeel.MainActivity" />
         </activity>
+
+        <activity android:name=".trend.FeelingsTrendActivity"></activity>
     </application>
 
 </manifest>
