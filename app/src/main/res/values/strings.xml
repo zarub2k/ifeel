@@ -25,10 +25,9 @@
 
     <!-- Trend activity -->
     <string name="title_activity_trend">Feelings Trend</string>
+    <string name="txt_fragment_today">Today\'s Trend</string>
+    <string name="txt_fragment_weekly">Weekly Trend</string>
 
     <!-- Influencer activity -->
     <string name="title_activity_influencer">Influencers summary</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

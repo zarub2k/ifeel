@@ -15,11 +15,21 @@ public class TrendPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return null;
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = new TodaysTrendFragment();
+                break;
+            case 1:
+                fragment = new WeeklyTrendFragment();
+                break;
+        }
+
+        return fragment;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return 2;
     }
 }

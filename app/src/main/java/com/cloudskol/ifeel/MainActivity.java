@@ -8,6 +8,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.cloudskol.ifeel.trend.FeelingsTrendActivity;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -50,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchTrendActivity() {
-        final Intent intent = new Intent(this, TrendActivity.class);
+//        final Intent intent = new Intent(this, TrendActivity.class);
+        final Intent intent = new Intent(this, FeelingsTrendActivity.class);
         startActivity(intent);
     }
 
