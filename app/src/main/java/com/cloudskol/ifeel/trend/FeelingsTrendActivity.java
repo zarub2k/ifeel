@@ -5,11 +5,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.cloudskol.ifeel.R;
 
-public class FeelingsTrendActivity extends FragmentActivity {
+public class FeelingsTrendActivity extends AppCompatActivity {
     private static final String LOG_TAG = FeelingsTrendActivity.class.getSimpleName();
 
     private static final String[] trendTabs = {"Today", "Weekly"};
