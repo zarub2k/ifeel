@@ -15,11 +15,16 @@ import com.cloudskol.ifeel.R;
  * @author tham
  */
 public class TodaysTrendFragment extends Fragment {
+    public TodaysTrendFragment() {}
 
-    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_todays_trend, container, false);
     }
 }

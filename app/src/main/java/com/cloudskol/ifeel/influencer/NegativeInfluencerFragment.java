@@ -14,7 +14,6 @@ import com.cloudskol.ifeel.R;
  */
 public class NegativeInfluencerFragment extends Fragment {
 
-
     public NegativeInfluencerFragment() {
         // Required empty public constructor
     }
