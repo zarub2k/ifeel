@@ -18,6 +18,6 @@ public class WeeklyTrendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_todays_trend, container, false);
+        return inflater.inflate(R.layout.fragment_weekly_trend, container, false);
     }
 }

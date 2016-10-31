@@ -2,6 +2,7 @@ package com.cloudskol.ifeel.trend;
 
 import android.app.ActionBar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.PagerTitleStrip;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager.SimpleOnPageChangeListener;
@@ -28,41 +29,43 @@ public class FeelingsTrendActivity extends AppCompatActivity {
 
         final ViewPager trendPager = (ViewPager) findViewById(R.id.activity_feelings_trend);
         trendPager.setAdapter(trendPagerAdapter);
-        trendPager.setOnPageChangeListener(new SimpleOnPageChangeListener() {
-            @Override
-            public void onPageSelected(int position) {
-                getActionBar().setSelectedNavigationItem(position);
-            }
-        });
+//        trendPager.setOnPageChangeListener(new SimpleOnPageChangeListener() {
+//            @Override
+//            public void onPageSelected(int position) {
+//                getActionBar().setSelectedNavigationItem(position);
+//            }
+//        });
 
-        final ActionBar actionBar = getActionBar();
-        Log.v(LOG_TAG, "Action bar: " + actionBar);
-        actionBar.setHomeButtonEnabled(false);
-        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+        PagerTitleStrip titleStrip = (PagerTitleStrip) findViewById(R.id.pager_title_strip);
 
-        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-            @Override
-            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-                trendPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-
-            }
-
-            @Override
-            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-
-            }
-        };
-
-
-
-        for (int i = 0; i < trendTabs.length; i++) {
-            actionBar.addTab(actionBar.newTab()
-                    .setText(trendTabs[i])
-                    .setTabListener(tabListener));
-        }
+//        final ActionBar actionBar = getActionBar();
+//        Log.v(LOG_TAG, "Action bar: " + actionBar);
+//        actionBar.setHomeButtonEnabled(false);
+//        actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
+//
+//        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+//            @Override
+//            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+//                trendPager.setCurrentItem(tab.getPosition());
+//            }
+//
+//            @Override
+//            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+//
+//            }
+//
+//            @Override
+//            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+//
+//            }
+//        };
+//
+//
+//
+//        for (int i = 0; i < trendTabs.length; i++) {
+//            actionBar.addTab(actionBar.newTab()
+//                    .setText(trendTabs[i])
+//                    .setTabListener(tabListener));
+//        }
     }
 }
