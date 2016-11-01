@@ -18,7 +18,8 @@
     <string name="lbl_disgust">Disgust</string>
     <string name="lbl_surprise">Surprised</string>
 
-    <string name="txt_person_hint">Type a person name</string>
+    <string name="txt_person_hint">Person name...</string>
+    <string name="txt_note_hint">Add note...</string>
 
     <string name="btn_save">Save</string>
     <string name="btn_cancel">Cancel</string>

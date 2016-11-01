@@ -1,4 +1,4 @@
-package com.cloudskol.ifeel;
+package com.cloudskol.ifeel.influencer;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.cloudskol.ifeel.R;
 import com.cloudskol.ifeel.influencer.InfluencerPagerAdapter;
 import com.cloudskol.ifeel.influencer.NegativeInfluencerFragment;
 import com.cloudskol.ifeel.influencer.PositiveInfluencerFragment;

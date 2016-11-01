@@ -34,7 +34,7 @@
                 android:value="com.cloudskol.ifeel.MainActivity" />
         </activity>
         <activity
-            android:name=".InfluencerActivity"
+            android:name=".influencer.InfluencerActivity"
             android:label="@string/title_activity_influencer"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

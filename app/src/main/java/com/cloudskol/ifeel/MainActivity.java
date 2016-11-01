@@ -6,8 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
+import com.cloudskol.ifeel.influencer.InfluencerActivity;
 import com.cloudskol.ifeel.trend.FeelingsTrendActivity;
 
 public class MainActivity extends AppCompatActivity {
