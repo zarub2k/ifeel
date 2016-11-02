@@ -34,6 +34,7 @@ public class TodaysTrendFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_todays_trend, container, false);
+
         renderPieChart(view);
 
         return view;
@@ -52,11 +53,10 @@ public class TodaysTrendFragment extends Fragment {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
         }
 
-
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
 
         List<Integer> colors = new ArrayList<>(8);
-        for (int color : ColorTemplate.MATERIAL_COLORS) {
+        for (int color : ColorTemplate.COLORFUL_COLORS) {
             colors.add(color);
         }
 
