@@ -17,6 +17,7 @@ import android.widget.ToggleButton;
 
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
+import com.cloudskol.ifeel.util.FeelingUtility;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -120,10 +121,7 @@ public class FeelActivity extends AppCompatActivity {
         EditText summaryText = (EditText) findViewById(R.id.txt_summary);
         contentValues.put(FeelContract.FeelEntry.COLUMN_SUMMARY, summaryText.getText().toString());
 
-        final Calendar calendar = Calendar.getInstance();
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        final String now = dateFormat.format(calendar.getTime());
-        contentValues.put(FeelContract.FeelEntry.COLUMN_DATE, now);
+        contentValues.put(FeelContract.FeelEntry.COLUMN_DATE, FeelingUtility.getInstance().getFormattedToday());
 
         Log.v(LOG_TAG, "Content values: " + contentValues);
 
