@@ -34,14 +34,12 @@
             android:textOn="@string/lbl_happy"
             android:textOff="@string/lbl_happy"
             android:onClick="onToggle"
-            android:background="@drawable/happy"
             android:layout_gravity="center"/>
         <ToggleButton android:id="@+id/tgl_relaxed"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:drawableTop="@drawable/relaxed"
             android:textOn="@string/lbl_relaxed"
             android:textOff="@string/lbl_relaxed"
             android:onClick="onToggle" />
@@ -50,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:drawableTop="@drawable/sad"
             android:textOn="@string/lbl_sad"
             android:textOff="@string/lbl_sad"
             android:onClick="onToggle" />
@@ -59,7 +56,6 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:textSize="14sp"
-            android:drawableTop="@drawable/angry"
             android:textOn="@string/lbl_angry"
             android:textOff="@string/lbl_angry"
             android:onClick="onToggle" />

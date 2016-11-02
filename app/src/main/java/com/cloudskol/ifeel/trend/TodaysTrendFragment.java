@@ -35,32 +35,28 @@ public class TodaysTrendFragment extends Fragment {
                              Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.fragment_todays_trend, container, false);
         renderPieChart(view);
+
         return view;
     }
 
     private void renderPieChart(View view) {
+        final List<TodaysTrendAggregation> todaysTrendAggregations = TrendQueryManager.getInstance(this.getContext()).todaysTrend();
+
         PieChart todayTrend = (PieChart) view.findViewById(R.id.todayTrend);
         todayTrend.setUsePercentValues(true);
         todayTrend.getDescription().setEnabled(false);
 
 
-        List<PieEntry> entries = new ArrayList<PieEntry>(8);
-
-        entries.add(new PieEntry(10, "Fear"));
-        entries.add(new PieEntry(12, "Anger"));
-        entries.add(new PieEntry(8, "Sad"));
-        entries.add(new PieEntry(20, "Joy"));
-        entries.add(new PieEntry(3, "Disgust"));
-        entries.add(new PieEntry(5, "Surprised"));
-
-        final PieDataSet pieDataSet = new PieDataSet(entries, "Today");
-
-        List<Integer> colors = new ArrayList<>(8);
-        for (int color : ColorTemplate.COLORFUL_COLORS) {
-            colors.add(color);
+        List<PieEntry> entries = new ArrayList<PieEntry>(todaysTrendAggregations.size());
+        for (TodaysTrendAggregation trendAggregation : todaysTrendAggregations) {
+            entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
         }
 
-        for (int color : ColorTemplate.JOYFUL_COLORS) {
+
+        final PieDataSet pieDataSet = new PieDataSet(entries, null);
+
+        List<Integer> colors = new ArrayList<>(8);
+        for (int color : ColorTemplate.MATERIAL_COLORS) {
             colors.add(color);
         }
 
