@@ -1,9 +1,6 @@
 package com.cloudskol.ifeel.trend;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,10 +46,10 @@ public class TodaysTrendFragment extends Fragment {
     }
 
     private PieData getChartData() {
-        final List<TodaysTrendAggregation> todaysTrendAggregations = TrendQueryManager.getInstance(
+        final List<TrendAggregationByFeeling> todaysTrendAggregations = TrendQueryManager.getInstance(
                 this.getContext()).todaysTrend();
         List<PieEntry> entries = new ArrayList<PieEntry>(todaysTrendAggregations.size());
-        for (TodaysTrendAggregation trendAggregation : todaysTrendAggregations) {
+        for (TrendAggregationByFeeling trendAggregation : todaysTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
         }
 

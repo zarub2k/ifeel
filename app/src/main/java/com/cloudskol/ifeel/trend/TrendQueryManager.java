@@ -8,6 +8,7 @@ import android.util.Log;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.util.DateUtility;
+import com.cloudskol.ifeel.util.Range;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,49 @@ public class TrendQueryManager {
         return instance;
     }
 
-    public List<TodaysTrendAggregation> todaysTrend() {
+    public List<TrendAggregationByFeeling> weeklyTrend() {
+        Log.v(LOG_TAG, "Enters weeklyTrend()");
+        final Range<String> weeklyRange = DateUtility.getInstance().getWeeklyRange();
+
+        final SQLiteDatabase database = dbHelper.getReadableDatabase();
+        String[] columns = new String[] { "distinct feeling", "count(_id)" };
+
+        String selection = "date between date(?) and date(?)";
+        String[] arguments = new String[] { weeklyRange.getStart(), weeklyRange.getEnd() };
+
+        String groupBy = "feeling";
+
+        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
+                columns,
+                selection,
+                arguments,
+                groupBy,
+                null,
+                null);
+
+        cursor.moveToFirst();
+
+        TrendAggregationByFeeling trendAggregation = null;
+        List<TrendAggregationByFeeling> trendAggregations = new ArrayList<>(cursor.getCount());
+        boolean hasData = true;
+        while (hasData && cursor.getCount() > 0) {
+            final String feeling = cursor.getString(cursor.getColumnIndex("feeling"));
+            final int count = cursor.getInt(cursor.getColumnIndex("count(_id)"));
+
+            trendAggregation = new TrendAggregationByFeeling(feeling, count);
+            trendAggregations.add(trendAggregation);
+            Log.v(LOG_TAG, "Aggregation: " + feeling + " >> " + count);
+
+            hasData = cursor.moveToNext();
+        }
+
+        Log.v(LOG_TAG, "Total size of the trendAggregations: " + trendAggregations.size());
+
+        return trendAggregations;
+    }
+
+    public List<TrendAggregationByFeeling> todaysTrend() {
+        Log.v(LOG_TAG, "Enters todaysTrend()");
         final SQLiteDatabase database = dbHelper.getReadableDatabase();
         String[] columns = new String[] { "distinct feeling", "count(_id)" };
 
@@ -51,14 +94,14 @@ public class TrendQueryManager {
 
         cursor.moveToFirst();
 
-        TodaysTrendAggregation trendAggregation = null;
-        List<TodaysTrendAggregation> trendAggregations = new ArrayList<>(cursor.getCount());
+        TrendAggregationByFeeling trendAggregation = null;
+        List<TrendAggregationByFeeling> trendAggregations = new ArrayList<>(cursor.getCount());
         boolean hasData = true;
         while (hasData && cursor.getCount() > 0) {
             final String feeling = cursor.getString(cursor.getColumnIndex("feeling"));
             final int count = cursor.getInt(cursor.getColumnIndex("count(_id)"));
 
-            trendAggregation = new TodaysTrendAggregation(feeling, count);
+            trendAggregation = new TrendAggregationByFeeling(feeling, count);
             trendAggregations.add(trendAggregation);
             Log.v(LOG_TAG, "Aggregation: " + feeling + " >> " + count);
 
