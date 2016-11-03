@@ -9,13 +9,13 @@ import java.util.Date;
  * @author tham
  */
 
-public class FeelingUtility {
+public class DateUtility {
     private static final String DATE_FORMAT = "yyyy-MM-dd";
 
-    private static final FeelingUtility instance = new FeelingUtility();
-    private FeelingUtility() {}
+    private static final DateUtility instance = new DateUtility();
+    private DateUtility() {}
 
-    public static final synchronized FeelingUtility getInstance() {
+    public static final synchronized DateUtility getInstance() {
         return instance;
     }
 

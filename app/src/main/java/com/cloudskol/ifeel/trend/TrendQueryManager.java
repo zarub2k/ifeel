@@ -7,7 +7,7 @@ import android.util.Log;
 
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
-import com.cloudskol.ifeel.util.FeelingUtility;
+import com.cloudskol.ifeel.util.DateUtility;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +37,7 @@ public class TrendQueryManager {
         String[] columns = new String[] { "distinct feeling", "count(_id)" };
 
         String selection = "date=?";
-        String[] arguments = new String[] { FeelingUtility.getInstance().getFormattedToday() };
+        String[] arguments = new String[] { DateUtility.getInstance().getFormattedToday() };
 
         String groupBy = "feeling";
 
