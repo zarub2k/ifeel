@@ -42,15 +42,17 @@ public class TodaysTrendFragment extends Fragment {
     }
 
     private void renderPieChart(View view) {
-        final List<TodaysTrendAggregation> todaysTrendAggregations = TrendQueryManager.getInstance(this.getContext()).todaysTrend();
-
         PieChart todayTrend = (PieChart) view.findViewById(R.id.todayTrend);
-        todayTrend.setUsePercentValues(true);
-        todayTrend.getDescription().setEnabled(false);
-        todayTrend.setExtraOffsets(5, 10, 5, 5);
-        todayTrend.setDrawCenterText(true);
+        setChartConfiguration(todayTrend);
 
+        todayTrend.setData(getChartData());
+        todayTrend.notifyDataSetChanged();
+        todayTrend.invalidate();
+    }
 
+    private PieData getChartData() {
+        final List<TodaysTrendAggregation> todaysTrendAggregations = TrendQueryManager.getInstance(
+                this.getContext()).todaysTrend();
         List<PieEntry> entries = new ArrayList<PieEntry>(todaysTrendAggregations.size());
         for (TodaysTrendAggregation trendAggregation : todaysTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
@@ -59,7 +61,7 @@ public class TodaysTrendFragment extends Fragment {
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
 
         List<Integer> colors = new ArrayList<>(8);
-        for (int color : ColorTemplate.COLORFUL_COLORS) {
+        for (int color : ColorTemplate.JOYFUL_COLORS) {
             colors.add(color);
         }
 
@@ -69,10 +71,15 @@ public class TodaysTrendFragment extends Fragment {
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueFormatter(new PercentFormatter());
 
-        todayTrend.setData(pieData);
-        todayTrend.notifyDataSetChanged();
-        todayTrend.invalidate();
-        todayTrend.setDragDecelerationFrictionCoef(0.95f);
-        todayTrend.highlightValues(null);
+        return pieData;
+    }
+
+    private void setChartConfiguration(PieChart pieChart) {
+        pieChart.setUsePercentValues(true);
+        pieChart.getDescription().setEnabled(false);
+        pieChart.setExtraOffsets(5, 10, 5, 5);
+        pieChart.setDrawCenterText(true);
+        pieChart.setDragDecelerationFrictionCoef(0.95f);
+        pieChart.highlightValues(null);
     }
 }
