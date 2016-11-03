@@ -17,6 +17,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets { //Added for executing the junit
+        test {
+            resources {
+                srcDir "test"
+            }
+        }
+    }
 }
 
 dependencies {
