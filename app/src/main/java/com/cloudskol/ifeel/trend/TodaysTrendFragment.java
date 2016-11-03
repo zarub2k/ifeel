@@ -14,6 +14,7 @@ import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
@@ -46,6 +47,8 @@ public class TodaysTrendFragment extends Fragment {
         PieChart todayTrend = (PieChart) view.findViewById(R.id.todayTrend);
         todayTrend.setUsePercentValues(true);
         todayTrend.getDescription().setEnabled(false);
+        todayTrend.setExtraOffsets(5, 10, 5, 5);
+        todayTrend.setDrawCenterText(true);
 
 
         List<PieEntry> entries = new ArrayList<PieEntry>(todaysTrendAggregations.size());
@@ -61,8 +64,15 @@ public class TodaysTrendFragment extends Fragment {
         }
 
         pieDataSet.setColors(colors);
+        pieDataSet.setSliceSpace(3f);
 
-        todayTrend.setData(new PieData(pieDataSet));
+        PieData pieData = new PieData(pieDataSet);
+        pieData.setValueFormatter(new PercentFormatter());
+
+        todayTrend.setData(pieData);
+        todayTrend.notifyDataSetChanged();
         todayTrend.invalidate();
+        todayTrend.setDragDecelerationFrictionCoef(0.95f);
+        todayTrend.highlightValues(null);
     }
 }

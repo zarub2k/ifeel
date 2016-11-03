@@ -18,8 +18,6 @@ public class FeelingsTrendActivity extends AppCompatActivity {
     private TabLayout tabLayout;
     private ViewPager trendPager;
 
-    private static final String[] trendTabs = {"Today", "Weekly"};
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
