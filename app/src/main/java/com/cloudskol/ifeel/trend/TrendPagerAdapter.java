@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class TrendPagerAdapter extends FragmentPagerAdapter {
-    private static final String[] trendTabs = {"Today", "Weekly"};
+    private static final String[] trendTabs = {"Today", "Weekly", "Monthly"};
 
     public TrendPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -25,6 +25,10 @@ public class TrendPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 fragment = new WeeklyTrendFragment();
                 break;
+
+            case 2:
+                fragment = new MonthlyTrendFragment();
+                break;
         }
 
         return fragment;
@@ -32,7 +36,7 @@ public class TrendPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return trendTabs.length;
     }
 
     @Override

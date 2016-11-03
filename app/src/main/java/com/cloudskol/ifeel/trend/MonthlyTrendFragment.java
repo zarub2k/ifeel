@@ -20,8 +20,8 @@ import java.util.List;
 /**
  * @author tham
  */
-public class WeeklyTrendFragment extends Fragment {
-    public WeeklyTrendFragment() {}
+public class MonthlyTrendFragment extends Fragment {
+    public MonthlyTrendFragment() {}
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -31,26 +31,26 @@ public class WeeklyTrendFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        final View view = inflater.inflate(R.layout.fragment_weekly_trend, container, false);
+        final View view = inflater.inflate(R.layout.fragment_monthly_trend, container, false);
         renderPieChart(view);
 
         return view;
     }
 
     private void renderPieChart(View view) {
-        PieChart weeklyTrend = (PieChart) view.findViewById(R.id.weeklyTrend);
-        setChartConfiguration(weeklyTrend);
+        PieChart monthlyTrend = (PieChart) view.findViewById(R.id.monthlyTrend);
+        setChartConfiguration(monthlyTrend);
 
-        weeklyTrend.setData(getChartData());
-        weeklyTrend.notifyDataSetChanged();
-        weeklyTrend.invalidate();
+        monthlyTrend.setData(getChartData());
+        monthlyTrend.notifyDataSetChanged();
+        monthlyTrend.invalidate();
     }
 
     private PieData getChartData() {
-        final List<TrendAggregationByFeeling> weeklyTrendAggregations = TrendQueryManager.getInstance(
-                this.getContext()).weeklyTrend();
-        List<PieEntry> entries = new ArrayList<PieEntry>(weeklyTrendAggregations.size());
-        for (TrendAggregationByFeeling trendAggregation : weeklyTrendAggregations) {
+        final List<TrendAggregationByFeeling> monthlyTrendAggregations = TrendQueryManager.getInstance(
+                this.getContext()).monthlyTrend();
+        List<PieEntry> entries = new ArrayList<PieEntry>(monthlyTrendAggregations.size());
+        for (TrendAggregationByFeeling trendAggregation : monthlyTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
         }
 

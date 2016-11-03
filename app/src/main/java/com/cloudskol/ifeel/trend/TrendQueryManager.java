@@ -33,6 +33,50 @@ public class TrendQueryManager {
         return instance;
     }
 
+    public List<TrendAggregationByFeeling> monthlyTrend() {
+        Log.v(LOG_TAG, "Enters monthlyTrend()");
+        final Range<String> monthlyRange = DateUtility.getInstance().getMonthlyRange();
+
+        final SQLiteDatabase database = dbHelper.getReadableDatabase();
+        String[] columns = new String[] { "distinct feeling", "count(_id)" };
+
+        String selection = "date between date(?) and date(?)";
+        String[] arguments = new String[] { monthlyRange.getStart(), monthlyRange.getEnd() };
+
+        String groupBy = "feeling";
+
+        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
+                columns,
+                selection,
+                arguments,
+                groupBy,
+                null,
+                null);
+
+        cursor.moveToFirst();
+
+        TrendAggregationByFeeling trendAggregation = null;
+        List<TrendAggregationByFeeling> trendAggregations = new ArrayList<>(cursor.getCount());
+        boolean hasData = true;
+        while (hasData && cursor.getCount() > 0) {
+            final String feeling = cursor.getString(cursor.getColumnIndex("feeling"));
+            final int count = cursor.getInt(cursor.getColumnIndex("count(_id)"));
+
+            trendAggregation = new TrendAggregationByFeeling(feeling, count);
+            trendAggregations.add(trendAggregation);
+            Log.v(LOG_TAG, "Aggregation: " + feeling + " >> " + count);
+
+            hasData = cursor.moveToNext();
+        }
+
+        Log.v(LOG_TAG, "Total size of the trendAggregations: " + trendAggregations.size());
+
+        closeCursor(cursor);
+
+        return trendAggregations;
+    }
+
+
     public List<TrendAggregationByFeeling> weeklyTrend() {
         Log.v(LOG_TAG, "Enters weeklyTrend()");
         final Range<String> weeklyRange = DateUtility.getInstance().getWeeklyRange();
@@ -70,6 +114,8 @@ public class TrendQueryManager {
         }
 
         Log.v(LOG_TAG, "Total size of the trendAggregations: " + trendAggregations.size());
+
+        closeCursor(cursor);
 
         return trendAggregations;
     }
@@ -110,6 +156,14 @@ public class TrendQueryManager {
 
         Log.v(LOG_TAG, "Total size of the trendAggregations: " + trendAggregations.size());
 
+        closeCursor(cursor);
+
         return trendAggregations;
+    }
+
+    private void closeCursor(Cursor cursor) {
+        if (!cursor.isClosed()) {
+            cursor.close();
+        }
     }
 }
