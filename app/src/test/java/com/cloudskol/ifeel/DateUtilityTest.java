@@ -13,4 +13,9 @@ public class DateUtilityTest {
     public void testGetFormattedToday() {
         DateUtility.getInstance().getWeeklyRange();
     }
+
+    @Test
+    public void testGetMonthlyRange() {
+        DateUtility.getInstance().getMonthlyRange();
+    }
 }

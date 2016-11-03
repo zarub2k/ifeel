@@ -40,4 +40,18 @@ public class DateUtility {
         final String end = getFormattedDate(calendar.getTime());
         return new Range<String>(start, end);
     }
+
+    public Range<String> getMonthlyRange() {
+        Calendar calendar = GregorianCalendar.getInstance();
+//        System.out.println("Min: " + calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+//        System.out.println("Max: " + calendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+
+        calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
+        final String start = getFormattedDate(calendar.getTime());
+
+        calendar.add(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_MONTH) - 1);
+        final String end = getFormattedDate(calendar.getTime());
+
+        return new Range<String>(start, end);
+    }
 }
