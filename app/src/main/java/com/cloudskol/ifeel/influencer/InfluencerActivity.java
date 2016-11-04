@@ -1,5 +1,6 @@
 package com.cloudskol.ifeel.influencer;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -9,10 +10,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
+import com.cloudskol.ifeel.FeelActivity;
 import com.cloudskol.ifeel.R;
 import com.cloudskol.ifeel.influencer.InfluencerPagerAdapter;
 import com.cloudskol.ifeel.influencer.NegativeInfluencerFragment;
 import com.cloudskol.ifeel.influencer.PositiveInfluencerFragment;
+import com.cloudskol.ifeel.trend.FeelingsTrendActivity;
 
 public class InfluencerActivity extends AppCompatActivity {
     private Toolbar toolbar;
@@ -37,8 +40,10 @@ public class InfluencerActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+            final Intent intent = new Intent(InfluencerActivity.this, FeelActivity.class);
+            startActivity(intent);
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
