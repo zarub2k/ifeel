@@ -70,10 +70,6 @@ public class InfluencerQueryManager {
         return aggregations;
     }
 
-    private void getNegativeInfluencers() {
-        Log.v(LOG_TAG, "Enters getNegativeInfluencers()");
-    }
-
     private void closeCursor(Cursor cursor) {
         if (cursor.isClosed()) {
             return;
