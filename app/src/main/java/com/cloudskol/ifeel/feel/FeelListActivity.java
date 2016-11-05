@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ListView;
 
 import com.cloudskol.ifeel.R;
 
@@ -36,6 +37,10 @@ public class FeelListActivity extends AppCompatActivity {
 
     private void renderUi() {
         List<Feeling> feelings = FeelingsQueryManager.getInstance(this).feelings();
+        final FeelingsAdapter feelingsAdapter = new FeelingsAdapter(this, feelings);
+
+        ListView feelingsListView = (ListView) findViewById(R.id.feelings_list);
+        feelingsListView.setAdapter(feelingsAdapter);
     }
 
     private void startIntent() {
