@@ -1,0 +1,68 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#009688"
+    android:gravity="center">
+
+    <!--<TextView
+        android:id="@+id/appwidget_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="8dp"
+        android:background="#09C"
+        android:contentDescription="@string/appwidget_text"
+        android:text="@string/appwidget_text"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold|italic" /> -->
+
+    <TextView android:id="@+id/lbl_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/widget_title"
+        android:layout_margin="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"/>
+
+    <LinearLayout android:id="@+id/positive_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/lbl_title">
+        <TextView android:id="@+id/lbl_positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="12sp"
+            android:text="@string/widget_txt_positive"/>
+        <TextView android:id="@+id/positive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="14sp"
+            android:text="@string/widget_txt_negative"/>
+    </LinearLayout>
+
+    <LinearLayout android:id="@+id/negative_container"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_below="@id/lbl_title"
+        android:layout_toRightOf="@+id/positive_container">
+        <TextView android:id="@+id/lbl_negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="12sp"
+            android:text="@string/widget_txt_negative"/>
+        <TextView android:id="@+id/negative"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textSize="14sp"
+            android:text="@string/widget_txt_negative"/>
+    </LinearLayout>
+</RelativeLayout>

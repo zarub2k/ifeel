@@ -42,7 +42,6 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cloudskol.ifeel.MainActivity" />
         </activity>
-
         <activity
             android:name=".trend.FeelingsTrendActivity"
             android:label="@string/title_activity_trend"
@@ -51,6 +50,22 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cloudskol.ifeel.MainActivity" />
+        </activity>
+
+        <receiver android:name=".widget.FeelingAppWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/feeling_app_widget_info" />
+        </receiver>
+
+        <activity android:name=".widget.FeelingAppWidgetConfigureActivity">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
+            </intent-filter>
         </activity>
     </application>
 
