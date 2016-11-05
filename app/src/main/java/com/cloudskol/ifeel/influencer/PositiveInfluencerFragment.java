@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cloudskol.ifeel.R;
+import com.cloudskol.ifeel.common.PieConfiguration;
 import com.cloudskol.ifeel.trend.TrendAggregationByFeeling;
 import com.cloudskol.ifeel.trend.TrendQueryManager;
 import com.github.mikephil.charting.charts.PieChart;
@@ -48,12 +49,12 @@ public class PositiveInfluencerFragment extends Fragment {
     }
 
     private void renderPieChart(View view) {
-        PieChart monthlyTrend = (PieChart) view.findViewById(R.id.positiveInfluencer);
-        setChartConfiguration(monthlyTrend);
+        PieChart positiveInfluencer = (PieChart) view.findViewById(R.id.positiveInfluencer);
+        PieConfiguration.getInstance().setDefaultConfiguration(positiveInfluencer);
 
-        monthlyTrend.setData(getChartData());
-        monthlyTrend.notifyDataSetChanged();
-        monthlyTrend.invalidate();
+        positiveInfluencer.setData(getChartData());
+        positiveInfluencer.notifyDataSetChanged();
+        positiveInfluencer.invalidate();
     }
 
     private PieData getChartData() {
@@ -84,20 +85,5 @@ public class PositiveInfluencerFragment extends Fragment {
         pieData.setValueTextSize(20f);
 
         return pieData;
-    }
-
-    private void setChartConfiguration(PieChart pieChart) {
-        pieChart.setUsePercentValues(true);
-        pieChart.getDescription().setEnabled(false);
-        pieChart.setExtraOffsets(5, 10, 5, 5);
-        pieChart.setDrawCenterText(true);
-        pieChart.setDragDecelerationFrictionCoef(0.95f);
-        pieChart.highlightValues(null);
-        pieChart.setNoDataText("No data available");
-
-        pieChart.setEntryLabelTextSize(25f);
-
-        Legend legend = pieChart.getLegend();
-        legend.setTextSize(15f);
     }
 }
