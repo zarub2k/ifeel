@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.cloudskol.ifeel.feel.FeelListActivity;
 import com.cloudskol.ifeel.influencer.InfluencerActivity;
 import com.cloudskol.ifeel.trend.FeelingsTrendActivity;
 
@@ -58,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchFeelActivity() {
-        final Intent intent = new Intent(this, FeelActivity.class);
+//        final Intent intent = new Intent(this, FeelActivity.class);
+        final Intent intent = new Intent(this, FeelListActivity.class);
         startActivity(intent);
     }
 }

@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".FeelActivity"
+            android:name=".feel.FeelActivity"
             android:label="@string/title_activity_feel"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
@@ -66,6 +66,16 @@
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".feel.FeelListActivity"
+            android:label="@string/title_activity_trend"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cloudskol.ifeel.MainActivity" />
         </activity>
     </application>
 
