@@ -2,6 +2,7 @@ package com.cloudskol.ifeel.trend;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ import java.util.List;
  * @author tham
  */
 public class TodaysTrendFragment extends Fragment {
+    private static final String LOG_TAG = TodaysTrendFragment.class.getSimpleName();
+
     public TodaysTrendFragment() {}
 
     @Override
@@ -51,18 +54,13 @@ public class TodaysTrendFragment extends Fragment {
                 this.getContext()).todaysTrend();
         List<PieEntry> entries = new ArrayList<PieEntry>(todaysTrendAggregations.size());
         for (TrendAggregationByFeeling trendAggregation : todaysTrendAggregations) {
+            Log.v(LOG_TAG, trendAggregation.getName() + " > " + trendAggregation.getCount());
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
-
-        List<Integer> colors = new ArrayList<>(8);
-        for (int color : ColorPalatte.FEELING_COLORS) {
-            colors.add(color);
-        }
-
-        pieDataSet.setColors(colors);
-        pieDataSet.setSliceSpace(3f);
+        pieDataSet.setColors(ColorPalatte.getFeelingColors());
+        pieDataSet.setSliceSpace(2f);
 
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueFormatter(new PercentFormatter());

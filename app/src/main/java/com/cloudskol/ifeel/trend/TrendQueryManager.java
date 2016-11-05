@@ -5,12 +5,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.cloudskol.ifeel.common.TrendAggragationComparator;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.util.DateUtility;
 import com.cloudskol.ifeel.util.Range;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -73,6 +75,7 @@ public class TrendQueryManager {
 
         closeCursor(cursor);
 
+        Collections.sort(trendAggregations, new TrendAggragationComparator());
         return trendAggregations;
     }
 
@@ -117,6 +120,7 @@ public class TrendQueryManager {
 
         closeCursor(cursor);
 
+        Collections.sort(trendAggregations, new TrendAggragationComparator());
         return trendAggregations;
     }
 
@@ -158,6 +162,7 @@ public class TrendQueryManager {
 
         closeCursor(cursor);
 
+        Collections.sort(trendAggregations, new TrendAggragationComparator());
         return trendAggregations;
     }
 
