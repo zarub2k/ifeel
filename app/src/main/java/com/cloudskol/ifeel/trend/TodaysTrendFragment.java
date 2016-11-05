@@ -7,14 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cloudskol.ifeel.R;
+import com.cloudskol.ifeel.common.ColorPalatte;
 import com.cloudskol.ifeel.common.PieConfiguration;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,7 +57,7 @@ public class TodaysTrendFragment extends Fragment {
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
 
         List<Integer> colors = new ArrayList<>(8);
-        for (int color : ColorTemplate.JOYFUL_COLORS) {
+        for (int color : ColorPalatte.FEELING_COLORS) {
             colors.add(color);
         }
 
