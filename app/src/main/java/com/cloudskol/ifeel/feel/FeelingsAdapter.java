@@ -51,6 +51,7 @@ public class FeelingsAdapter extends BaseAdapter {
 
             viewHolder = new FeelingViewHolder();
             viewHolder.person = (TextView) convertView.findViewById(R.id.person);
+            viewHolder.summary = (TextView) convertView.findViewById(R.id.summary);
 
             convertView.setTag(viewHolder);
         } else {
@@ -59,6 +60,7 @@ public class FeelingsAdapter extends BaseAdapter {
 
         final Feeling feeling = feelings.get(position);
         viewHolder.person.setText(feeling.getPerson());
+        viewHolder.summary.setText(feeling.getSummary());
 
         return convertView;
     }
