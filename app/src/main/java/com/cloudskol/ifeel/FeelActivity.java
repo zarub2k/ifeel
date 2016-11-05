@@ -117,7 +117,7 @@ public class FeelActivity extends AppCompatActivity {
         EditText summaryText = (EditText) findViewById(R.id.txt_summary);
         contentValues.put(FeelContract.FeelEntry.COLUMN_SUMMARY, summaryText.getText().toString());
 
-        contentValues.put(FeelContract.FeelEntry.COLUMN_DATE, "2016-11-04");
+        contentValues.put(FeelContract.FeelEntry.COLUMN_DATE, DateUtility.getInstance().getFormattedToday());
 
         Log.v(LOG_TAG, "Content values: " + contentValues);
 

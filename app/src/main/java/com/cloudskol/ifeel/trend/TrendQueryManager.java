@@ -125,7 +125,7 @@ public class TrendQueryManager {
         final SQLiteDatabase database = dbHelper.getReadableDatabase();
         String[] columns = new String[] { "distinct feeling", "count(_id)" };
 
-        String selection = "date=?";
+        String selection = "date=date(?)";
         String[] arguments = new String[] { DateUtility.getInstance().getFormattedToday() };
 
         String groupBy = "feeling";
@@ -140,7 +140,7 @@ public class TrendQueryManager {
 
         cursor.moveToFirst();
 
-        TrendAggregationByFeeling trendAggregation = null;
+        TrendAggregationByFeeling trendAggregation;
         List<TrendAggregationByFeeling> trendAggregations = new ArrayList<>(cursor.getCount());
         boolean hasData = true;
         while (hasData && cursor.getCount() > 0) {

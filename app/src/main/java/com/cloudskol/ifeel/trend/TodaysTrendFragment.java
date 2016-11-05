@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.cloudskol.ifeel.R;
 import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -65,6 +66,7 @@ public class TodaysTrendFragment extends Fragment {
 
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueFormatter(new PercentFormatter());
+        pieData.setValueTextSize(20f);
 
         return pieData;
     }
@@ -76,5 +78,11 @@ public class TodaysTrendFragment extends Fragment {
         pieChart.setDrawCenterText(true);
         pieChart.setDragDecelerationFrictionCoef(0.95f);
         pieChart.highlightValues(null);
+        pieChart.setNoDataText("No data available");
+
+        pieChart.setEntryLabelTextSize(25f);
+
+        Legend legend = pieChart.getLegend();
+        legend.setTextSize(15f);
     }
 }
