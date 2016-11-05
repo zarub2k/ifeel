@@ -8,6 +8,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -66,10 +67,19 @@ public class FeelActivity extends AppCompatActivity {
         ((RadioGroup)view.getParent()).check(view.getId());
         selectedFeeling = String.valueOf(((ToggleButton)view).getText());
 
-        Toast.makeText(this, "Selected Toggle " + ((ToggleButton)view).getText(), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Selected Toggle " + ((ToggleButton)view).getText(), Toast.LENGTH_SHORT).show();
     }
 
     public void onSave(View view) {
+        if (!isValidFeeling()) {
+            Toast.makeText(this, "Select your current feeling", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidPerson()) {
+            Toast.makeText(this, "Select the person associated with your feeling", Toast.LENGTH_SHORT).show();
+            return;
+        }
         saveFeeling();
         Toast.makeText(this, "Your current feeling is stored successfully!", Toast.LENGTH_SHORT).show();
     }
@@ -122,5 +132,23 @@ public class FeelActivity extends AppCompatActivity {
         Log.v(LOG_TAG, "Content values: " + contentValues);
 
         return contentValues;
+    }
+
+    private boolean isValidFeeling() {
+        if (selectedFeeling == null || selectedFeeling.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValidPerson() {
+        EditText personText = (EditText) findViewById(R.id.txt_person);
+        Editable personValue = personText.getText();
+        if (personValue == null || personValue.toString().isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 }
