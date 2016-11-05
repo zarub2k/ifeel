@@ -9,10 +9,7 @@ import android.view.ViewGroup;
 
 import com.cloudskol.ifeel.R;
 import com.cloudskol.ifeel.common.PieConfiguration;
-import com.cloudskol.ifeel.trend.TrendAggregationByFeeling;
-import com.cloudskol.ifeel.trend.TrendQueryManager;
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
@@ -28,6 +25,7 @@ import java.util.Set;
  * A simple {@link Fragment} subclass.
  */
 public class PositiveInfluencerFragment extends Fragment {
+    private static final String LOG_TAG = PositiveInfluencerFragment.class.getSimpleName();
 
     public PositiveInfluencerFragment() {
         // Required empty public constructor
@@ -61,8 +59,8 @@ public class PositiveInfluencerFragment extends Fragment {
         final List<InfluencerAggregation> influencers = InfluencerQueryManager.getInstance(
                 this.getContext()).getInfluencers();
 
-        final Map<String, Integer> positiveByPerson = InfluencerAggregator.getInstance().getPositiveByPerson(influencers);
-
+        final Map<String, Integer> positiveByPerson = InfluencerAggregator.getInstance().
+                getPositiveByPerson(influencers);
 
         List<PieEntry> entries = new ArrayList<PieEntry>(positiveByPerson.size());
         final Set<Map.Entry<String, Integer>> personEntrySet = positiveByPerson.entrySet();
