@@ -85,29 +85,30 @@ public class FeelActivity extends AppCompatActivity {
     }
 
     public void onCancel(View view) {
-        final SQLiteDatabase db = feelDbHelper.getReadableDatabase();
-
-        String[] projection = {
-                FeelContract.FeelEntry._ID,
-                FeelContract.FeelEntry.COLUMN_FEELING,
-                FeelContract.FeelEntry.COLUMN_PERSON
-        };
-
-        final Cursor cursor = db.query(FeelContract.FeelEntry.TABLE_NAME,
-                projection,
-                null,
-                null,
-                null,
-                null,
-                null);
-
-        cursor.moveToFirst();
-
-        Log.v(LOG_TAG, "Number of rows: " + cursor.getCount());
-
-        final String storedFeeling = cursor.getString(cursor.getColumnIndexOrThrow(FeelContract.FeelEntry.COLUMN_FEELING));
-
-        Toast.makeText(this, "Cancel button clicked " + storedFeeling, Toast.LENGTH_SHORT).show();
+        this.onBackPressed();
+//        final SQLiteDatabase db = feelDbHelper.getReadableDatabase();
+//
+//        String[] projection = {
+//                FeelContract.FeelEntry._ID,
+//                FeelContract.FeelEntry.COLUMN_FEELING,
+//                FeelContract.FeelEntry.COLUMN_PERSON
+//        };
+//
+//        final Cursor cursor = db.query(FeelContract.FeelEntry.TABLE_NAME,
+//                projection,
+//                null,
+//                null,
+//                null,
+//                null,
+//                null);
+//
+//        cursor.moveToFirst();
+//
+//        Log.v(LOG_TAG, "Number of rows: " + cursor.getCount());
+//
+//        final String storedFeeling = cursor.getString(cursor.getColumnIndexOrThrow(FeelContract.FeelEntry.COLUMN_FEELING));
+//
+//        Toast.makeText(this, "Cancel button clicked " + storedFeeling, Toast.LENGTH_SHORT).show();
     }
 
     private void saveFeeling() {
