@@ -1,10 +1,12 @@
 package com.cloudskol.ifeel.feel;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.cloudskol.ifeel.R;
@@ -52,6 +54,8 @@ public class FeelingsAdapter extends BaseAdapter {
             viewHolder = new FeelingViewHolder();
             viewHolder.person = (TextView) convertView.findViewById(R.id.person);
             viewHolder.summary = (TextView) convertView.findViewById(R.id.summary);
+            viewHolder.date = (TextView) convertView.findViewById(R.id.date);
+            viewHolder.feeling = (ImageView) convertView.findViewById(R.id.img_feeling);
 
             convertView.setTag(viewHolder);
         } else {
@@ -61,15 +65,32 @@ public class FeelingsAdapter extends BaseAdapter {
         final Feeling feeling = feelings.get(position);
         viewHolder.person.setText(feeling.getPerson());
         viewHolder.summary.setText(feeling.getSummary());
+        viewHolder.date.setText(feeling.getDate());
+        viewHolder.feeling.setImageResource(getFeelingResource(feeling));
 
         return convertView;
     }
 
     private class FeelingViewHolder {
         TextView date;
-        TextView feeling;
+        ImageView feeling;
         TextView person;
         TextView summary;
+    }
+
+    private int getFeelingResource(Feeling feeling) {
+        int resource = 0;
+        if (feeling.getFeeling().equals("Happy")) {
+            resource = R.drawable.happy;
+        } else if (feeling.getFeeling().equals("Relaxed")) {
+            resource = R.drawable.relaxed;
+        } else if (feeling.getFeeling().equals("Sad")) {
+            resource = R.drawable.sad;
+        } else if (feeling.getFeeling().equals("Angry")) {
+            resource = R.drawable.angry;
+        }
+
+        return resource;
     }
 
     private void initializeFeelings(List<Feeling> feelings) {

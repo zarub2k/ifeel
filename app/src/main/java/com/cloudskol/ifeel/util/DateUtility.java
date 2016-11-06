@@ -31,13 +31,13 @@ public class DateUtility {
 
     public Range<String> getWeeklyRange() {
         Calendar calendar = GregorianCalendar.getInstance();
-        System.out.println("Day of the week: " + calendar.DAY_OF_WEEK);
 
-        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY);
+        calendar.set(Calendar.DAY_OF_WEEK, calendar.getActualMinimum(Calendar.DAY_OF_WEEK));
         final String start = getFormattedDate(calendar.getTime());
 
-        calendar.add(Calendar.DATE, 6);
+        calendar.add(Calendar.DATE, calendar.getActualMaximum(Calendar.DAY_OF_WEEK) - 1);
         final String end = getFormattedDate(calendar.getTime());
+
         return new Range<String>(start, end);
     }
 

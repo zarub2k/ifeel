@@ -1,11 +1,14 @@
 <resources>
-    <string name="app_name">ifeel</string>
+    <string name="app_name">iFeel</string>
 
-    <string name="nav_ifeel">iFeel</string>
+    <string name="nav_ifeel">Feelings</string>
     <string name="nav_trends">Trends</string>
     <string name="nav_influencers">Influencers</string>
 
     <string name="title_activity_feel">How do I feel now?</string>
+
+    <!-- Feeling list activity -->
+    <string name="title_feeling_list">Recent feelings</string>
 
     <!-- Feelings activity -->
     <string name="lbl_ifeel">I am feeling,</string>

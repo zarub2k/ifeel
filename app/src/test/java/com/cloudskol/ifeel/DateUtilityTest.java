@@ -1,6 +1,7 @@
 package com.cloudskol.ifeel;
 
 import com.cloudskol.ifeel.util.DateUtility;
+import com.cloudskol.ifeel.util.Range;
 
 import org.junit.Test;
 
@@ -11,7 +12,9 @@ import org.junit.Test;
 public class DateUtilityTest {
     @Test
     public void testGetFormattedToday() {
-        DateUtility.getInstance().getWeeklyRange();
+        final Range<String> weeklyRange = DateUtility.getInstance().getWeeklyRange();
+        System.out.println("Start of the week: " + weeklyRange.getStart());
+        System.out.println("End of the week: " + weeklyRange.getEnd());
     }
 
     @Test

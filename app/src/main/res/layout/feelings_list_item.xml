@@ -1,22 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
 
-    <TextView
+    <LinearLayout android:id="@+id/thumbnail_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/person"/>
+        android:padding="3dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dp">
+
+        <ImageView
+            android:id="@+id/img_feeling"
+            android:layout_width="50dp"
+            android:layout_height="50dp"/>
+    </LinearLayout>
 
     <TextView
+        android:id="@+id/person"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/thumbnail_container"
+        android:layout_toRightOf="@+id/thumbnail_container"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="16dp"
+        android:textStyle="bold" />
+
+    <TextView
         android:id="@+id/summary"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/person"
+        android:textColor="#343434"
+        android:textSize="12dp"
+        android:layout_marginTop="1dp"
+        android:layout_toRightOf="@+id/thumbnail_container"
         android:maxLines="3"
-        android:ellipsize="end"/>
+        android:ellipsize="end" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/person"
+        android:gravity="right"
+        android:layout_marginRight="5dp"
+        android:textSize="12dp"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"/>
+
+</RelativeLayout>

@@ -70,7 +70,7 @@
 
         <activity
             android:name=".feel.FeelListActivity"
-            android:label="@string/title_activity_trend"
+            android:label="@string/title_feeling_list"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
