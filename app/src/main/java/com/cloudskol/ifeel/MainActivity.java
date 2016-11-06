@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void switchFeelActivity() {
-//        final Intent intent = new Intent(this, FeelActivity.class);
+//        final Intent intent = new Intent(this, CreateFeelActivity.class);
         final Intent intent = new Intent(this, FeelListActivity.class);
         startActivity(intent);
     }

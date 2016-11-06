@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.cloudskol.ifeel.feel.FeelActivity;
+import com.cloudskol.ifeel.feel.CreateFeelActivity;
 import com.cloudskol.ifeel.R;
 
 public class FeelingsTrendActivity extends AppCompatActivity {
@@ -39,7 +39,7 @@ public class FeelingsTrendActivity extends AppCompatActivity {
             public void onClick(View view) {
 //                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                        .setAction("Action", null).show();
-                final Intent intent = new Intent(FeelingsTrendActivity.this, FeelActivity.class);
+                final Intent intent = new Intent(FeelingsTrendActivity.this, CreateFeelActivity.class);
                 startActivity(intent);
             }
         });

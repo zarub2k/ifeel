@@ -1,6 +1,7 @@
 package com.cloudskol.ifeel.feel;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,8 +21,8 @@ import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.util.DateUtility;
 
-public class FeelActivity extends AppCompatActivity {
-    private static final String LOG_TAG = FeelActivity.class.getSimpleName();
+public class CreateFeelActivity extends AppCompatActivity {
+    private static final String LOG_TAG = CreateFeelActivity.class.getSimpleName();
 
     private String selectedFeeling = null;
     final FeelDbHelper feelDbHelper = new FeelDbHelper(this);
@@ -82,6 +83,9 @@ public class FeelActivity extends AppCompatActivity {
         }
         saveFeeling();
         Toast.makeText(this, "Your current feeling is stored successfully!", Toast.LENGTH_SHORT).show();
+
+        final Intent intent = new Intent(this, FeelListActivity.class);
+        startActivity(intent);
     }
 
     public void onCancel(View view) {

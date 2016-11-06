@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".feel.FeelActivity"
+            android:name=".feel.CreateFeelActivity"
             android:label="@string/title_activity_feel"
             android:parentActivityName=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
