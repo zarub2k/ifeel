@@ -44,4 +44,15 @@ public class Feeling {
     public void setSummary(String summary) {
         this.summary = summary;
     }
+
+    @Override
+    public String toString() {
+        return "Feeling{" +
+                "id=" + id +
+                ", date='" + date + '\'' +
+                ", feeling='" + feeling + '\'' +
+                ", person='" + person + '\'' +
+                ", summary='" + summary + '\'' +
+                '}';
+    }
 }

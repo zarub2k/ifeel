@@ -6,7 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.cloudskol.ifeel.R;
 
@@ -40,6 +42,14 @@ public class FeelListActivity extends AppCompatActivity {
 
         ListView feelingsListView = (ListView) findViewById(R.id.feelings_list);
         feelingsListView.setAdapter(feelingsAdapter);
+
+        feelingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                final Feeling feeling = (Feeling) parent.getItemAtPosition(position);
+                Toast.makeText(FeelListActivity.this, "Item id : " + feeling, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void startIntent() {
