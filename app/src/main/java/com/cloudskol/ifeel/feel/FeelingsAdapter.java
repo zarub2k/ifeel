@@ -80,13 +80,13 @@ public class FeelingsAdapter extends BaseAdapter {
 
     private int getFeelingResource(Feeling feeling) {
         int resource = 0;
-        if (feeling.getFeeling().equals("Happy")) {
+        if (feeling.getFeeling().equals(FeelingType.HAPPY.getName())) {
             resource = R.drawable.happy;
-        } else if (feeling.getFeeling().equals("Relaxed")) {
+        } else if (feeling.getFeeling().equals(FeelingType.RELAXED.getName())) {
             resource = R.drawable.relaxed;
-        } else if (feeling.getFeeling().equals("Sad")) {
+        } else if (feeling.getFeeling().equals(FeelingType.SAD.getName())) {
             resource = R.drawable.sad;
-        } else if (feeling.getFeeling().equals("Angry")) {
+        } else if (feeling.getFeeling().equals(FeelingType.ANGRY.getName())) {
             resource = R.drawable.angry;
         }
 
