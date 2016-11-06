@@ -58,7 +58,7 @@ public class MonthlyTrendFragment extends Fragment {
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
-        pieDataSet.setColors(ColorPalatte.getFeelingColors());
+        pieDataSet.setColors(ColorPalatte.getFeelingColors(monthlyTrendAggregations));
         pieDataSet.setSliceSpace(3f);
 
         PieData pieData = new PieData(pieDataSet);

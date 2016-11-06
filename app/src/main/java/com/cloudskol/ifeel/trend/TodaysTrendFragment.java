@@ -1,5 +1,6 @@
 package com.cloudskol.ifeel.trend;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +47,6 @@ public class TodaysTrendFragment extends Fragment {
         PieConfiguration.getInstance().setDefaultConfiguration(todayTrend);
 
         todayTrend.setData(getChartData());
-        todayTrend.notifyDataSetChanged();
         todayTrend.invalidate();
     }
 
@@ -59,12 +60,13 @@ public class TodaysTrendFragment extends Fragment {
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
-        pieDataSet.setColors(ColorPalatte.getFeelingColors());
+        pieDataSet.setColors(ColorPalatte.getFeelingColors(todaysTrendAggregations));
         pieDataSet.setSliceSpace(2f);
 
         PieData pieData = new PieData(pieDataSet);
         pieData.setValueFormatter(new PercentFormatter());
-        pieData.setValueTextSize(20f);
+        pieData.setValueTextSize(25f);
+        pieData.setValueTextColor(Color.WHITE);
 
         return pieData;
     }

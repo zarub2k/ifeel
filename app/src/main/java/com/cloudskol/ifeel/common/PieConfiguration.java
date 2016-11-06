@@ -24,9 +24,11 @@ public class PieConfiguration {
         pieChart.highlightValues(null);
         pieChart.setNoDataText("No data available");
 
-        pieChart.setEntryLabelTextSize(25f);
+        pieChart.setEntryLabelTextSize(20f);
 
         Legend legend = pieChart.getLegend();
         legend.setTextSize(15f);
+
+        pieChart.highlightValues(null);
     }
 }
