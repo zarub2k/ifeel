@@ -6,10 +6,12 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.cloudskol.ifeel.R;
@@ -83,6 +85,16 @@ public class UpdateFeelActivity extends AppCompatActivity {
     }
 
     public void onSave(View view) {
+        if (!isValidFeeling()) {
+            Toast.makeText(this, "Select your current feeling", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        if (!isValidPerson()) {
+            Toast.makeText(this, "Select the person associated with your feeling", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
 //        Toast.makeText(this, "Save clicked", Toast.LENGTH_SHORT).show();
         FeelingsQueryManager.getInstance(this).updateFeeling(currentFeel.getId(), getContentValues());
 
@@ -118,5 +130,23 @@ public class UpdateFeelActivity extends AppCompatActivity {
     private void navigateCreate() {
         Intent intent = new Intent(this, CreateFeelActivity.class);
         startActivity(intent);
+    }
+
+    private boolean isValidFeeling() {
+        if (selectedFeeling == null || selectedFeeling.isEmpty()) {
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValidPerson() {
+        EditText personText = (EditText) findViewById(R.id.txt_person);
+        Editable personValue = personText.getText();
+        if (personValue == null || personValue.toString().isEmpty()) {
+            return false;
+        }
+
+        return true;
     }
 }
