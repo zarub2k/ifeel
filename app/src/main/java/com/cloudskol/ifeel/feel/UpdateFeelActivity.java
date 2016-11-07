@@ -1,5 +1,6 @@
 package com.cloudskol.ifeel.feel;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -26,8 +27,7 @@ public class UpdateFeelActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                navigateCreate();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -38,5 +38,10 @@ public class UpdateFeelActivity extends AppCompatActivity {
     private void renderUi() {
         final Feeling selectedFeel = (Feeling) getIntent().getSerializableExtra("SelectedFeel");
         Log.v(LOG_TAG, "Current feel: " + selectedFeel);
+    }
+
+    private void navigateCreate() {
+        Intent intent = new Intent(this, CreateFeelActivity.class);
+        startActivity(intent);
     }
 }

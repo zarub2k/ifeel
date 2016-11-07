@@ -25,6 +25,9 @@
     <string name="btn_save">Save</string>
     <string name="btn_cancel">Cancel</string>
 
+    <!-- Update feel activity -->
+    <string name="title_activity_update_feel">Wanna change your feel?</string>
+
     <!-- Trend activity -->
     <string name="title_activity_trend">Feelings Trend</string>
     <string name="txt_fragment_today">Today\'s Trend</string>
@@ -43,5 +46,4 @@
     <string name="widget_title">iFeel Trend</string>
     <string name="widget_txt_positive">Positive Trend</string>
     <string name="widget_txt_negative">Negative Trend</string>
-    <string name="title_activity_update_feel">UpdateFeelActivity</string>
 </resources>
