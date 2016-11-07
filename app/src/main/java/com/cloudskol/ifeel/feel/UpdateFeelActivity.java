@@ -2,7 +2,6 @@ package com.cloudskol.ifeel.feel;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -11,18 +10,15 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.cloudskol.ifeel.R;
 import com.cloudskol.ifeel.db.FeelContract;
-import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.util.DateUtility;
 
 public class UpdateFeelActivity extends AppCompatActivity {
     private static final String LOG_TAG = UpdateFeelActivity.class.getSimpleName();
 
-    final FeelDbHelper feelDbHelper = new FeelDbHelper(this);
     private String selectedFeeling;
     private Feeling currentFeel;
 
@@ -88,7 +84,7 @@ public class UpdateFeelActivity extends AppCompatActivity {
 
     public void onSave(View view) {
 //        Toast.makeText(this, "Save clicked", Toast.LENGTH_SHORT).show();
-        update();
+        FeelingsQueryManager.getInstance(this).updateFeeling(currentFeel.getId(), getContentValues());
 
         final Intent intent = new Intent(this, FeelListActivity.class);
         startActivity(intent);
@@ -99,15 +95,6 @@ public class UpdateFeelActivity extends AppCompatActivity {
         selectedFeeling = String.valueOf(((ToggleButton)view).getText());
 
 //        Toast.makeText(this, "Selected Toggle " + ((ToggleButton)view).getText(), Toast.LENGTH_SHORT).show();
-    }
-
-    private void update() {
-        String where = "_id = ?";
-        String[] whereArgs = new String[] {"" + currentFeel.getId()};
-
-        final SQLiteDatabase db = feelDbHelper.getWritableDatabase();
-        db.update(FeelContract.FeelEntry.TABLE_NAME, getContentValues(), where, whereArgs);
-        db.close();
     }
 
     private ContentValues getContentValues() {

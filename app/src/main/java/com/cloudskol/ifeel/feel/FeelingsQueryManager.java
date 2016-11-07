@@ -1,5 +1,6 @@
 package com.cloudskol.ifeel.feel;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -85,6 +86,21 @@ public class FeelingsQueryManager {
         Log.v(LOG_TAG, "Number of feelings searched: " + feelings.size());
 
         return feelings;
+    }
+
+    public void createFeeling(ContentValues contentValues) {
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.insert(FeelContract.FeelEntry.TABLE_NAME, null, contentValues);
+        db.close();
+    }
+
+    public void updateFeeling(int id, ContentValues contentValues) {
+        String where = "_id = ?";
+        String[] whereArgs = new String[] { String.valueOf(id)};
+
+        final SQLiteDatabase db = dbHelper.getWritableDatabase();
+        db.update(FeelContract.FeelEntry.TABLE_NAME, contentValues, where, whereArgs);
+        db.close();
     }
 
     private void closeCursor(Cursor cursor) {

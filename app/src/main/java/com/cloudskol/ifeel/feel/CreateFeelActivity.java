@@ -2,7 +2,6 @@ package com.cloudskol.ifeel.feel;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,14 +17,12 @@ import android.widget.ToggleButton;
 
 import com.cloudskol.ifeel.R;
 import com.cloudskol.ifeel.db.FeelContract;
-import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.util.DateUtility;
 
 public class CreateFeelActivity extends AppCompatActivity {
     private static final String LOG_TAG = CreateFeelActivity.class.getSimpleName();
 
     private String selectedFeeling = null;
-    final FeelDbHelper feelDbHelper = new FeelDbHelper(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +78,9 @@ public class CreateFeelActivity extends AppCompatActivity {
             Toast.makeText(this, "Select the person associated with your feeling", Toast.LENGTH_SHORT).show();
             return;
         }
-        saveFeeling();
+
+        FeelingsQueryManager.getInstance(this).createFeeling(getContentValues());
+
         Toast.makeText(this, "Your current feeling is stored successfully!", Toast.LENGTH_SHORT).show();
 
         final Intent intent = new Intent(this, FeelListActivity.class);
@@ -115,11 +114,6 @@ public class CreateFeelActivity extends AppCompatActivity {
 //        Toast.makeText(this, "Cancel button clicked " + storedFeeling, Toast.LENGTH_SHORT).show();
     }
 
-    private void saveFeeling() {
-        final SQLiteDatabase db = feelDbHelper.getWritableDatabase();
-        db.insert(FeelContract.FeelEntry.TABLE_NAME, null, getContentValues());
-        db.close();
-    }
 
     private ContentValues getContentValues() {
         final ContentValues contentValues = new ContentValues();
