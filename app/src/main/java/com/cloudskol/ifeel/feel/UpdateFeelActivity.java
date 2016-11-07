@@ -24,6 +24,7 @@ public class UpdateFeelActivity extends AppCompatActivity {
 
     final FeelDbHelper feelDbHelper = new FeelDbHelper(this);
     private String selectedFeeling;
+    private Feeling currentFeel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class UpdateFeelActivity extends AppCompatActivity {
     }
 
     private void renderUi() {
-        final Feeling currentFeel = (Feeling) getIntent().getSerializableExtra("SelectedFeel");
+        currentFeel = (Feeling) getIntent().getSerializableExtra("SelectedFeel");
 
         final RadioGroup.OnCheckedChangeListener onCheckedChangeListener = new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -86,7 +87,11 @@ public class UpdateFeelActivity extends AppCompatActivity {
     }
 
     public void onSave(View view) {
-        Toast.makeText(this, "Save clicked", Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Save clicked", Toast.LENGTH_SHORT).show();
+        update();
+
+        final Intent intent = new Intent(this, FeelListActivity.class);
+        startActivity(intent);
     }
 
     public void onToggle(View view) {
@@ -97,9 +102,12 @@ public class UpdateFeelActivity extends AppCompatActivity {
     }
 
     private void update() {
-//        final SQLiteDatabase db = feelDbHelper.getWritableDatabase();
-//        db.update(FeelContract.FeelEntry.TABLE_NAME, null, getContentValues());
-//        db.close();
+        String where = "_id = ?";
+        String[] whereArgs = new String[] {"" + currentFeel.getId()};
+
+        final SQLiteDatabase db = feelDbHelper.getWritableDatabase();
+        db.update(FeelContract.FeelEntry.TABLE_NAME, getContentValues(), where, whereArgs);
+        db.close();
     }
 
     private ContentValues getContentValues() {
