@@ -28,7 +28,7 @@ public class FeelListActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startIntent();
+                navigateCreate();
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
@@ -47,12 +47,18 @@ public class FeelListActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 final Feeling feeling = (Feeling) parent.getItemAtPosition(position);
-                Toast.makeText(FeelListActivity.this, "Item id : " + feeling, Toast.LENGTH_SHORT).show();
+                navigateUpdate(feeling);
             }
         });
     }
 
-    private void startIntent() {
+    private void navigateUpdate(Feeling feeling) {
+        final Intent intent = new Intent(this, UpdateFeelActivity.class);
+        intent.putExtra("SelectedFeel", feeling);
+        startActivity(intent);
+    }
+
+    private void navigateCreate() {
         Intent intent = new Intent(this, CreateFeelActivity.class);
         startActivity(intent);
     }

@@ -18,11 +18,11 @@
         <activity
             android:name=".feel.CreateFeelActivity"
             android:label="@string/title_activity_feel"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".feel.FeelListActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cloudskol.ifeel.MainActivity" />
+                android:value="com.cloudskol.ifeel.feel.FeelListActivity" />
         </activity>
         <activity
             android:name=".TrendActivity"
@@ -67,7 +67,6 @@
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".feel.FeelListActivity"
             android:label="@string/title_feeling_list"
@@ -76,6 +75,15 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cloudskol.ifeel.MainActivity" />
+        </activity>
+        <activity
+            android:name=".feel.UpdateFeelActivity"
+            android:label="@string/title_activity_update_feel"
+            android:parentActivityName=".feel.FeelListActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cloudskol.ifeel.feel.FeelListActivity" />
         </activity>
     </application>
 

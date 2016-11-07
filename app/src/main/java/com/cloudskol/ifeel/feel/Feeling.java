@@ -1,10 +1,14 @@
 package com.cloudskol.ifeel.feel;
 
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
 /**
  * Created by tham on 05-11-2016.
  */
 
-public class Feeling {
+public class Feeling implements Serializable {
     private int id;
     private String date;
     private String feeling;
