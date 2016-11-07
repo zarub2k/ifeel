@@ -53,14 +53,17 @@ public class FeelingsQueryManager {
         String[] arguments = new String[] { weeklyRange.getStart(), weeklyRange.getEnd() };
 
         String groupBy = null;
+        String having = null;
+        String orderBy = "date(date) DESC, _id DESC";
+
 
         final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
                 columns,
                 selection,
                 arguments,
                 groupBy,
-                null,
-                null);
+                having,
+                orderBy);
 
         cursor.moveToFirst();
 
