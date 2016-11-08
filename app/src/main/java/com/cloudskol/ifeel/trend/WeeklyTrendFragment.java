@@ -2,6 +2,7 @@ package com.cloudskol.ifeel.trend;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import java.util.List;
  * @author tham
  */
 public class WeeklyTrendFragment extends Fragment {
+    private static final String LOG_TAG = WeeklyTrendFragment.class.getSimpleName();
+
     public WeeklyTrendFragment() {}
 
     @Override
@@ -44,7 +47,13 @@ public class WeeklyTrendFragment extends Fragment {
         PieChart weeklyTrend = (PieChart) view.findViewById(R.id.weeklyTrend);
         PieConfiguration.getInstance().setDefaultConfiguration(weeklyTrend);
 
-        weeklyTrend.setData(getChartData());
+        PieData chartData = getChartData();
+        if (chartData == null) {
+            Log.v(LOG_TAG, "Weekly chart data is empty");
+            return;
+        }
+
+        weeklyTrend.setData(chartData);
         weeklyTrend.invalidate();
     }
 
@@ -54,6 +63,10 @@ public class WeeklyTrendFragment extends Fragment {
         List<PieEntry> entries = new ArrayList<PieEntry>(weeklyTrendAggregations.size());
         for (TrendAggregationByFeeling trendAggregation : weeklyTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
+        }
+
+        if (entries.size() == 0) {
+            return null;
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);

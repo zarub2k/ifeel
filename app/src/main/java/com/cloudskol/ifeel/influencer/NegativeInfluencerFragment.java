@@ -50,7 +50,12 @@ public class NegativeInfluencerFragment extends Fragment {
         PieChart negativeInfluencer = (PieChart) view.findViewById(R.id.negativeInfluencer);
         PieConfiguration.getInstance().setDefaultConfiguration(negativeInfluencer);
 
-        negativeInfluencer.setData(getChartData());
+        PieData chartData = getChartData();
+        if (chartData == null) {
+            return;
+        }
+
+        negativeInfluencer.setData(chartData);
         negativeInfluencer.invalidate();
     }
 
@@ -65,6 +70,10 @@ public class NegativeInfluencerFragment extends Fragment {
         final Set<Map.Entry<String, Integer>> personEntrySet = positiveByPerson.entrySet();
         for (Map.Entry<String, Integer> entry : personEntrySet) {
             entries.add(new PieEntry(entry.getValue(), entry.getKey()));
+        }
+
+        if (entries.size() == 0) {
+            return null;
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);

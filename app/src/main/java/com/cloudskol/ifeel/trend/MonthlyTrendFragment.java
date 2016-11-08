@@ -44,7 +44,12 @@ public class MonthlyTrendFragment extends Fragment {
         PieChart monthlyTrend = (PieChart) view.findViewById(R.id.monthlyTrend);
         PieConfiguration.getInstance().setDefaultConfiguration(monthlyTrend);
 
-        monthlyTrend.setData(getChartData());
+        PieData chartData = getChartData();
+        if (chartData == null) {
+            return;
+        }
+
+        monthlyTrend.setData(chartData);
         monthlyTrend.invalidate();
     }
 
@@ -54,6 +59,10 @@ public class MonthlyTrendFragment extends Fragment {
         List<PieEntry> entries = new ArrayList<PieEntry>(monthlyTrendAggregations.size());
         for (TrendAggregationByFeeling trendAggregation : monthlyTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
+        }
+
+        if (entries.size() == 0) {
+            return null;
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);

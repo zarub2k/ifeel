@@ -46,7 +46,12 @@ public class TodaysTrendFragment extends Fragment {
         PieChart todayTrend = (PieChart) view.findViewById(R.id.todayTrend);
         PieConfiguration.getInstance().setDefaultConfiguration(todayTrend);
 
-        todayTrend.setData(getChartData());
+        PieData chartData = getChartData();
+        if (chartData == null) {
+            return;
+        }
+
+        todayTrend.setData(chartData);
         todayTrend.invalidate();
     }
 
@@ -57,6 +62,10 @@ public class TodaysTrendFragment extends Fragment {
         for (TrendAggregationByFeeling trendAggregation : todaysTrendAggregations) {
             Log.v(LOG_TAG, trendAggregation.getName() + " > " + trendAggregation.getCount());
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));
+        }
+
+        if (entries.size() == 0) {
+            return null;
         }
 
         final PieDataSet pieDataSet = new PieDataSet(entries, null);
