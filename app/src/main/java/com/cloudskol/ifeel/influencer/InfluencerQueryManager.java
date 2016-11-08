@@ -67,6 +67,8 @@ public class InfluencerQueryManager {
 
         closeCursor(cursor);
 
+        database.close();
+
         return aggregations;
     }
 

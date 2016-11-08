@@ -1,68 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="#009688"
-    android:gravity="center">
+    android:layout_height="match_parent"
+    android:padding="10dp">
 
-    <!--<TextView
-        android:id="@+id/appwidget_text"
+    <LinearLayout android:id="@+id/thumbnail_container"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_margin="8dp"
-        android:background="#09C"
-        android:contentDescription="@string/appwidget_text"
-        android:text="@string/appwidget_text"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold|italic" /> -->
+        android:padding="3dp"
+        android:layout_centerInParent="true">
 
-    <TextView android:id="@+id/lbl_title"
-        android:layout_width="match_parent"
+        <TextView android:id="@+id/lbl_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/widget_title"
+            android:layout_margin="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/lbl_positive"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/widget_title"
-        android:layout_margin="8dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:textSize="18sp"/>
+        android:layout_alignTop="@+id/thumbnail_container"
+        android:layout_toRightOf="@+id/thumbnail_container"
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="16dp"
+        android:textStyle="bold"
+        android:text="@string/widget_txt_positive"/>
 
-    <LinearLayout android:id="@+id/positive_container"
+    <TextView
+        android:id="@+id/lbl_negative"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/lbl_title">
-        <TextView android:id="@+id/lbl_positive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="12sp"
-            android:text="@string/widget_txt_positive"/>
-        <TextView android:id="@+id/positive"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="14sp"
-            android:text="@string/widget_txt_negative"/>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/lbl_positive"
+        android:gravity="right"
+        android:layout_marginRight="5dp"
+        android:textSize="12dp"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"
+        android:text="@string/widget_txt_negative"/>
 
-    <LinearLayout android:id="@+id/negative_container"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_below="@id/lbl_title"
-        android:layout_toRightOf="@+id/positive_container">
-        <TextView android:id="@+id/lbl_negative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="12sp"
-            android:text="@string/widget_txt_negative"/>
-        <TextView android:id="@+id/negative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:textSize="14sp"
-            android:text="@string/widget_txt_negative"/>
-    </LinearLayout>
 </RelativeLayout>
