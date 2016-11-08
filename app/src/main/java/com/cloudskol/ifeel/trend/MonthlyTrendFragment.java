@@ -45,7 +45,6 @@ public class MonthlyTrendFragment extends Fragment {
         PieConfiguration.getInstance().setDefaultConfiguration(monthlyTrend);
 
         monthlyTrend.setData(getChartData());
-        monthlyTrend.notifyDataSetChanged();
         monthlyTrend.invalidate();
     }
 

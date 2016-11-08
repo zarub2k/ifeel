@@ -45,7 +45,6 @@ public class WeeklyTrendFragment extends Fragment {
         PieConfiguration.getInstance().setDefaultConfiguration(weeklyTrend);
 
         weeklyTrend.setData(getChartData());
-        weeklyTrend.notifyDataSetChanged();
         weeklyTrend.invalidate();
     }
 

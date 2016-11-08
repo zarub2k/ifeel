@@ -51,7 +51,6 @@ public class PositiveInfluencerFragment extends Fragment {
         PieConfiguration.getInstance().setDefaultConfiguration(positiveInfluencer);
 
         positiveInfluencer.setData(getChartData());
-        positiveInfluencer.notifyDataSetChanged();
         positiveInfluencer.invalidate();
     }
 
