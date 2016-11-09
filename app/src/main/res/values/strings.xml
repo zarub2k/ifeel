@@ -43,7 +43,7 @@
     <string name="add_widget">Add widget</string>
 
     <!-- iFeel app widget -->
-    <string name="widget_title">iFeel Trend</string>
-    <string name="widget_txt_positive">Positive Trend</string>
-    <string name="widget_txt_negative">Negative Trend</string>
+    <string name="widget_title">iFeel Today</string>
+    <string name="widget_txt_positive">Positive</string>
+    <string name="widget_txt_negative">Negative</string>
 </resources>
