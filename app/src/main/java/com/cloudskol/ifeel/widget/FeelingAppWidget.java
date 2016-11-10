@@ -19,8 +19,11 @@ public class FeelingAppWidget extends AppWidgetProvider {
 //        CharSequence widgetText = FeelingAppWidgetConfigureActivity.loadTitlePref(context, appWidgetId);
         // Construct the RemoteViews object
         RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.feeling_app_widget);
-        views.setTextViewText(R.id.positive_count, String.valueOf(20));
-        views.setTextViewText(R.id.negative_count, String.valueOf(30));
+
+        final WidgetAggregation aggregation = WidgetAggregationManager.getInstance(context)
+                .getAggregation();
+        views.setTextViewText(R.id.positive_count, aggregation.getPositive().getValue());
+        views.setTextViewText(R.id.negative_count, aggregation.getNegative().getValue());
 
 //        views.setTextViewText(R.id.appwidget_text, widgetText);
 
