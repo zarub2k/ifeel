@@ -15,6 +15,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.cloudskol.ifeel.R;
+import com.cloudskol.ifeel.db.FeelContentProvider;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.util.DateUtility;
 
@@ -96,7 +97,12 @@ public class UpdateFeelActivity extends AppCompatActivity {
         }
 
 //        Toast.makeText(this, "Save clicked", Toast.LENGTH_SHORT).show();
-        FeelingsQueryManager.getInstance(this).updateFeeling(currentFeel.getId(), getContentValues());
+        String where = "_id = ?";
+        String[] whereArgs = new String[] { String.valueOf(currentFeel.getId())};
+        getContentResolver().update(FeelContentProvider.CONTENT_URI, getContentValues(),
+                where, whereArgs);
+
+//        FeelingsQueryManager.getInstance(this).updateFeeling(currentFeel.getId(), getContentValues());
 
         final Intent intent = new Intent(this, FeelListActivity.class);
         startActivity(intent);

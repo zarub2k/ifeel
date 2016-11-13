@@ -16,6 +16,7 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.cloudskol.ifeel.R;
+import com.cloudskol.ifeel.db.FeelContentProvider;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.util.DateUtility;
 
@@ -79,41 +80,15 @@ public class CreateFeelActivity extends AppCompatActivity {
             return;
         }
 
-        FeelingsQueryManager.getInstance(this).createFeeling(getContentValues());
+        getContentResolver().insert(FeelContentProvider.CONTENT_URI, getContentValues());
+
+//        FeelingsQueryManager.getInstance(this).createFeeling(getContentValues());
 
         Toast.makeText(this, "Your current feeling is stored successfully!", Toast.LENGTH_SHORT).show();
 
         final Intent intent = new Intent(this, FeelListActivity.class);
         startActivity(intent);
     }
-
-    public void onCancel(View view) {
-        this.onBackPressed();
-//        final SQLiteDatabase db = feelDbHelper.getReadableDatabase();
-//
-//        String[] projection = {
-//                FeelContract.FeelEntry._ID,
-//                FeelContract.FeelEntry.COLUMN_FEELING,
-//                FeelContract.FeelEntry.COLUMN_PERSON
-//        };
-//
-//        final Cursor cursor = db.query(FeelContract.FeelEntry.TABLE_NAME,
-//                projection,
-//                null,
-//                null,
-//                null,
-//                null,
-//                null);
-//
-//        cursor.moveToFirst();
-//
-//        Log.v(LOG_TAG, "Number of rows: " + cursor.getCount());
-//
-//        final String storedFeeling = cursor.getString(cursor.getColumnIndexOrThrow(FeelContract.FeelEntry.COLUMN_FEELING));
-//
-//        Toast.makeText(this, "Cancel button clicked " + storedFeeling, Toast.LENGTH_SHORT).show();
-    }
-
 
     private ContentValues getContentValues() {
         final ContentValues contentValues = new ContentValues();

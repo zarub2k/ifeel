@@ -1,5 +1,6 @@
 package com.cloudskol.ifeel.feel;
 
+import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -7,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.cloudskol.ifeel.common.TrendAggragationComparator;
+import com.cloudskol.ifeel.db.FeelContentProvider;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.trend.TrendAggregationByFeeling;
@@ -36,7 +38,7 @@ public class FeelingsQueryManager {
         return instance;
     }
 
-    public List<Feeling> feelings() {
+    public List<Feeling> feelings(ContentResolver contentResolver) {
         Log.v(LOG_TAG, "Enters feelings()");
         final Range<String> weeklyRange = DateUtility.getInstance().getWeeklyRange();
 
@@ -56,14 +58,17 @@ public class FeelingsQueryManager {
         String having = null;
         String orderBy = "date(date) DESC, _id DESC";
 
+        final Cursor cursor = contentResolver.query(FeelContentProvider.CONTENT_URI, columns,
+                selection, arguments, orderBy);
 
-        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
-                columns,
-                selection,
-                arguments,
-                groupBy,
-                having,
-                orderBy);
+
+//        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
+//                columns,
+//                selection,
+//                arguments,
+//                groupBy,
+//                having,
+//                orderBy);
 
         cursor.moveToFirst();
 

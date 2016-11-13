@@ -37,7 +37,7 @@ public class FeelListActivity extends AppCompatActivity {
     }
 
     private void renderUi() {
-        List<Feeling> feelings = FeelingsQueryManager.getInstance(this).feelings();
+        List<Feeling> feelings = FeelingsQueryManager.getInstance(this).feelings(getContentResolver());
         final FeelingsAdapter feelingsAdapter = new FeelingsAdapter(this, feelings);
 
         ListView feelingsListView = (ListView) findViewById(R.id.feelings_list);
