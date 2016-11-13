@@ -62,11 +62,13 @@
                 android:resource="@xml/feeling_app_widget_info" />
         </receiver>
 
-        <!--<activity android:name=".widget.FeelingAppWidgetConfigureActivity">
+        <!--
+        <activity android:name=".widget.FeelingAppWidgetConfigureActivity">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
             </intent-filter>
-        </activity>-->
+        </activity>
+        -->
 
         <activity
             android:name=".feel.FeelListActivity"
@@ -86,6 +88,12 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cloudskol.ifeel.feel.FeelListActivity" />
         </activity>
+
+        <provider
+            android:name=".db.FeelContentProvider"
+            android:authorities="com.cloudskol.ifeel"
+            android:enabled="true"
+            android:exported="false" />
     </application>
 
 </manifest>
