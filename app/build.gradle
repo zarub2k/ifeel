@@ -4,9 +4,9 @@ android {
     signingConfigs {
         config {
             keyAlias 'iFeelAlias'
-            keyPassword 'iFeelAliasPassword'
-            storeFile file('/Users/tham/keystores/ifeel.jks')
-            storePassword 'iFeelKeyPassword'
+            keyPassword 'iFeelAliasPwd'
+            storeFile file('ifeel.jks')
+            storePassword 'iFeelStorePwd'
         }
     }
     compileSdkVersion 23
