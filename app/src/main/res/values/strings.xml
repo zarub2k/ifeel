@@ -9,6 +9,7 @@
 
     <!-- Feeling list activity -->
     <string name="title_feeling_list">Recent feelings</string>
+    <string name="btn_add">Add feel</string>
 
     <!-- Feelings activity -->
     <string name="lbl_ifeel">I am feeling,</string>
@@ -36,7 +37,6 @@
     <!-- Influencer activity -->
     <string name="title_activity_influencer">Influencers summary</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="appwidget_text">iFeel</string>
     <string name="configure">Configure</string>
