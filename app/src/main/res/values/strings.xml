@@ -19,6 +19,7 @@
     <string name="lbl_relaxed">Relaxed</string>
     <string name="lbl_sad">Sad</string>
     <string name="lbl_angry">Angry</string>
+    <string name="msg_empty">No feelings available!</string>
 
     <string name="txt_person_hint">Person name...</string>
     <string name="txt_note_hint">Add note...</string>

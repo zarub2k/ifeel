@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.cloudskol.ifeel.R;
@@ -38,9 +39,13 @@ public class FeelListActivity extends AppCompatActivity {
 
     private void renderUi() {
         List<Feeling> feelings = FeelingsQueryManager.getInstance(this).feelings(getContentResolver());
-        final FeelingsAdapter feelingsAdapter = new FeelingsAdapter(this, feelings);
 
         ListView feelingsListView = (ListView) findViewById(R.id.feelings_list);
+
+        TextView emptyTextView = (TextView) findViewById(R.id.msg_empty);
+        feelingsListView.setEmptyView(emptyTextView);
+
+        final FeelingsAdapter feelingsAdapter = new FeelingsAdapter(this, feelings);
         feelingsListView.setAdapter(feelingsAdapter);
 
         feelingsListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

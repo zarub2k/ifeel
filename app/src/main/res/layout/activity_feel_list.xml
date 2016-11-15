@@ -27,6 +27,14 @@ tools:context="com.cloudskol.ifeel.feel.FeelListActivity">
         android:id="@+id/feelings_list"
         tools:listitem="@layout/feelings_list_item"
         android:layout_marginTop="60dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/msg_empty"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:text="@string/msg_empty"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
