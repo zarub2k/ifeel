@@ -10,6 +10,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.util.Log;
 
+/**
+ * @author tham
+ *
+ * Content provider for iFeel application
+ */
 public class FeelContentProvider extends ContentProvider {
     private static final String LOG_TAG = FeelContentProvider.class.getSimpleName();
     private static final UriMatcher uriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
@@ -48,7 +53,8 @@ public class FeelContentProvider extends ContentProvider {
         switch (match) {
             case FEELINGS:
             case FEELINGS_BY_ID:
-                cursor = readableDb.query(FeelContract.FeelEntry.TABLE_NAME, projection, selection, selectionArgs, null, null, sortOrder);
+                cursor = readableDb.query(FeelContract.FeelEntry.TABLE_NAME, projection,
+                        selection, selectionArgs, null, null, sortOrder);
                 cursor.setNotificationUri(getContext().getContentResolver(), uri);
                 break;
 

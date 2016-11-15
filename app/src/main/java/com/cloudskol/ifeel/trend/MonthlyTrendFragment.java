@@ -54,8 +54,8 @@ public class MonthlyTrendFragment extends Fragment {
     }
 
     private PieData getChartData() {
-        final List<TrendAggregationByFeeling> monthlyTrendAggregations = TrendQueryManager.getInstance(
-                this.getContext()).monthlyTrend();
+        final List<TrendAggregationByFeeling> monthlyTrendAggregations = TrendQueryManager.getInstance()
+                .monthlyTrend(getContext().getContentResolver());
         List<PieEntry> entries = new ArrayList<PieEntry>(monthlyTrendAggregations.size());
         for (TrendAggregationByFeeling trendAggregation : monthlyTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));

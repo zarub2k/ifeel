@@ -1,11 +1,14 @@
 package com.cloudskol.ifeel.trend;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
 import android.util.Log;
 
 import com.cloudskol.ifeel.common.TrendAggragationComparator;
+import com.cloudskol.ifeel.db.FeelContentProvider;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
 import com.cloudskol.ifeel.util.DateUtility;
@@ -22,39 +25,27 @@ import java.util.List;
 public class TrendQueryManager {
     private final String LOG_TAG = TrendQueryManager.class.getSimpleName();
 
-    private static FeelDbHelper dbHelper;
-
     private static final TrendQueryManager instance = new TrendQueryManager();
     private TrendQueryManager() {}
 
-    public static final synchronized TrendQueryManager getInstance(Context context) {
-        if (dbHelper == null) {
-            dbHelper = new FeelDbHelper(context);
-        }
-
+    public static final synchronized TrendQueryManager getInstance() {
         return instance;
     }
 
-    public List<TrendAggregationByFeeling> monthlyTrend() {
+    public List<TrendAggregationByFeeling> monthlyTrend(ContentResolver contentResolver) {
         Log.v(LOG_TAG, "Enters monthlyTrend()");
         final Range<String> monthlyRange = DateUtility.getInstance().getMonthlyRange();
 
-        final SQLiteDatabase database = dbHelper.getReadableDatabase();
         String[] columns = new String[] { "distinct feeling", "count(_id)" };
 
-        String selection = "date between date(?) and date(?)";
+        String selection = "date between date(?) and date(?) GROUP BY feeling";
         String[] arguments = new String[] { monthlyRange.getStart(), monthlyRange.getEnd() };
 
-        String groupBy = "feeling";
-
-        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
+        final Cursor cursor = contentResolver.query(FeelContentProvider.CONTENT_URI,
                 columns,
                 selection,
                 arguments,
-                groupBy,
-                null,
                 null);
-
         cursor.moveToFirst();
 
         TrendAggregationByFeeling trendAggregation = null;
@@ -80,29 +71,22 @@ public class TrendQueryManager {
     }
 
 
-    public List<TrendAggregationByFeeling> weeklyTrend() {
+    public List<TrendAggregationByFeeling> weeklyTrend(ContentResolver contentResolver) {
         Log.v(LOG_TAG, "Enters weeklyTrend()");
         final Range<String> weeklyRange = DateUtility.getInstance().getWeeklyRange();
 
-        final SQLiteDatabase database = dbHelper.getReadableDatabase();
         String[] columns = new String[] { "distinct feeling", "count(_id)" };
 
-        String selection = "date between date(?) and date(?)";
+        String selection = "date between date(?) and date(?) GROUP BY feeling";
         String[] arguments = new String[] { weeklyRange.getStart(), weeklyRange.getEnd() };
 
-        String groupBy = "feeling";
-
-        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
-                columns,
+        final Cursor cursor = contentResolver.query(FeelContentProvider.CONTENT_URI, columns,
                 selection,
                 arguments,
-                groupBy,
-                null,
                 null);
-
         cursor.moveToFirst();
 
-        TrendAggregationByFeeling trendAggregation = null;
+        TrendAggregationByFeeling trendAggregation;
         List<TrendAggregationByFeeling> trendAggregations = new ArrayList<>(cursor.getCount());
         boolean hasData = true;
         while (hasData && cursor.getCount() > 0) {
@@ -124,22 +108,18 @@ public class TrendQueryManager {
         return trendAggregations;
     }
 
-    public List<TrendAggregationByFeeling> todaysTrend() {
-        Log.v(LOG_TAG, "Enters todaysTrend()");
-        final SQLiteDatabase database = dbHelper.getReadableDatabase();
+    public List<TrendAggregationByFeeling> todaysTrend(ContentResolver contentResolver) {
+        Log.v(LOG_TAG, "Enters todaysTrend with content resolver()");
+
         String[] columns = new String[] { "distinct feeling", "count(_id)" };
 
-        String selection = "date=date(?)";
+        String selection = "date=date(?) GROUP BY feeling";
         String[] arguments = new String[] { DateUtility.getInstance().getFormattedToday() };
 
-        String groupBy = "feeling";
-
-        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
+        Cursor cursor = contentResolver.query(FeelContentProvider.CONTENT_URI,
                 columns,
                 selection,
                 arguments,
-                groupBy,
-                null,
                 null);
 
         cursor.moveToFirst();

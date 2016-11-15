@@ -58,8 +58,8 @@ public class WeeklyTrendFragment extends Fragment {
     }
 
     private PieData getChartData() {
-        final List<TrendAggregationByFeeling> weeklyTrendAggregations = TrendQueryManager.getInstance(
-                this.getContext()).weeklyTrend();
+        final List<TrendAggregationByFeeling> weeklyTrendAggregations = TrendQueryManager.getInstance()
+                .weeklyTrend(getContext().getContentResolver());
         List<PieEntry> entries = new ArrayList<PieEntry>(weeklyTrendAggregations.size());
         for (TrendAggregationByFeeling trendAggregation : weeklyTrendAggregations) {
             entries.add(new PieEntry(trendAggregation.getCount(), trendAggregation.getName()));

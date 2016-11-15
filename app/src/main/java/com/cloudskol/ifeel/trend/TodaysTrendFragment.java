@@ -56,8 +56,8 @@ public class TodaysTrendFragment extends Fragment {
     }
 
     private PieData getChartData() {
-        final List<TrendAggregationByFeeling> todaysTrendAggregations = TrendQueryManager.getInstance(
-                this.getContext()).todaysTrend();
+        final List<TrendAggregationByFeeling> todaysTrendAggregations = TrendQueryManager.getInstance()
+                .todaysTrend(getContext().getContentResolver());
         List<PieEntry> entries = new ArrayList<PieEntry>(todaysTrendAggregations.size());
         for (TrendAggregationByFeeling trendAggregation : todaysTrendAggregations) {
             Log.v(LOG_TAG, trendAggregation.getName() + " > " + trendAggregation.getCount());
