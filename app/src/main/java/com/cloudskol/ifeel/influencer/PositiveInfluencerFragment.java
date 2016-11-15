@@ -60,8 +60,8 @@ public class PositiveInfluencerFragment extends Fragment {
     }
 
     private PieData getChartData() {
-        final List<InfluencerAggregation> influencers = InfluencerQueryManager.getInstance(
-                this.getContext()).getInfluencers();
+        final List<InfluencerAggregation> influencers = InfluencerQueryManager.getInstance()
+                .getInfluencers(getContext().getContentResolver());
 
         final Map<String, Integer> positiveByPerson = InfluencerAggregator.getInstance().
                 getPositiveByPerson(influencers);

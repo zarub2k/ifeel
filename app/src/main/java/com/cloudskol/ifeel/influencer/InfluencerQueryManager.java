@@ -1,12 +1,16 @@
 package com.cloudskol.ifeel.influencer;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import com.cloudskol.ifeel.db.FeelContentProvider;
 import com.cloudskol.ifeel.db.FeelContract;
 import com.cloudskol.ifeel.db.FeelDbHelper;
+import com.cloudskol.ifeel.util.DateUtility;
+import com.cloudskol.ifeel.util.Range;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,35 +22,28 @@ import java.util.List;
 public class InfluencerQueryManager {
     private static final String LOG_TAG = InfluencerQueryManager.class.getSimpleName();
 
-    private static FeelDbHelper dbHelper;
-
     private static final InfluencerQueryManager instance = new InfluencerQueryManager();
     private InfluencerQueryManager() {}
 
-    public static final synchronized InfluencerQueryManager getInstance(Context context) {
-        dbHelper = new FeelDbHelper(context);
+    public static final synchronized InfluencerQueryManager getInstance() {
         return instance;
     }
 
-    public List<InfluencerAggregation> getInfluencers() {
+    public List<InfluencerAggregation> getInfluencers(ContentResolver contentResolver) {
         Log.v(LOG_TAG, "Enters getPositiveInfluencers()");
 
-        final SQLiteDatabase database = dbHelper.getReadableDatabase();
+        final Range<String> monthlyRange = DateUtility.getInstance().getMonthlyRange();
+
         String[] columns = new String[] { "distinct person", "feeling", "count(_id)" };
 
-        String selection = null;
-        String[] slectionArgs = null;
+        String selection = "date between date(?) and date(?) GROUP BY person, feeling";
+        String[] selectionArgs = new String[] { monthlyRange.getStart(), monthlyRange.getEnd() };
 
-        String groupBy = "person, feeling";
-
-        final Cursor cursor = database.query(FeelContract.FeelEntry.TABLE_NAME,
+        final Cursor cursor = contentResolver.query(FeelContentProvider.CONTENT_URI,
                 columns,
                 selection,
-                slectionArgs,
-                groupBy,
-                null,
+                selectionArgs,
                 null);
-
         cursor.moveToFirst();
 
         List<InfluencerAggregation> aggregations = new ArrayList<>(cursor.getCount());
@@ -66,8 +63,6 @@ public class InfluencerQueryManager {
         }
 
         closeCursor(cursor);
-
-        database.close();
 
         return aggregations;
     }
