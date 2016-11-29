@@ -8,13 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity android:name=".main.SplashActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity android:name=".main.MainActivity"
+            android:label="@string/app_name"/>
+
         <activity
             android:name=".feel.CreateFeelActivity"
             android:label="@string/title_activity_feel"
@@ -25,31 +30,31 @@
                 android:value="com.cloudskol.ifeel.feel.FeelListActivity" />
         </activity>
         <activity
-            android:name=".TrendActivity"
+            android:name=".main.TrendActivity"
             android:label="@string/title_activity_trend"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cloudskol.ifeel.MainActivity" />
+                android:value="com.cloudskol.ifeel.main.MainActivity" />
         </activity>
         <activity
             android:name=".influencer.InfluencerActivity"
             android:label="@string/title_activity_influencer"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cloudskol.ifeel.MainActivity" />
+                android:value="com.cloudskol.ifeel.main.MainActivity" />
         </activity>
         <activity
             android:name=".trend.FeelingsTrendActivity"
             android:label="@string/title_activity_trend"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cloudskol.ifeel.MainActivity" />
+                android:value="com.cloudskol.ifeel.main.MainActivity" />
         </activity>
 
         <receiver android:name=".widget.FeelingAppWidget">
@@ -73,11 +78,11 @@
         <activity
             android:name=".feel.FeelListActivity"
             android:label="@string/title_feeling_list"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".main.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cloudskol.ifeel.MainActivity" />
+                android:value="com.cloudskol.ifeel.main.MainActivity" />
         </activity>
         <activity
             android:name=".feel.UpdateFeelActivity"

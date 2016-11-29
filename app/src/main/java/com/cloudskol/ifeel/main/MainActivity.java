@@ -1,4 +1,4 @@
-package com.cloudskol.ifeel;
+package com.cloudskol.ifeel.main;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
+import com.cloudskol.ifeel.R;
 import com.cloudskol.ifeel.feel.FeelListActivity;
 import com.cloudskol.ifeel.influencer.InfluencerActivity;
 import com.cloudskol.ifeel.trend.FeelingsTrendActivity;
