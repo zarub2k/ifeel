@@ -18,7 +18,7 @@
         android:textAlignment="center"
         android:layout_centerVertical="true"
         android:gravity="center"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/color_splash_title"
         android:textSize="72dp"/>
 
 </RelativeLayout>
